@@ -10,10 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
        /**
-     * @OA\Info(
-     *      version="1.0.0",
-     *      title="Quora Clone",
-     *      description="L5 Swagger OpenApi description",
+        * @OA\Info(title="Quora clone", version="0.0.1")
      *      @OA\Contact(
      *          email="admin@admin.com"
      *      ),

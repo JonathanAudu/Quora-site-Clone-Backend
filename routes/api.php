@@ -44,5 +44,6 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  // Comment Routes
  Route::post('user/add-comment', [CommentController::class, 'postComment']);
+ 
 
 
