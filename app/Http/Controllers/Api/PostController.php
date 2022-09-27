@@ -22,7 +22,7 @@ class PostController extends Controller
                 'errors' => $validator->errors(),
             ];
 
-        return response()->json($response, 400);
+        return response()->json($response, 500);
         }
 
         $validator = $validator->validated();
