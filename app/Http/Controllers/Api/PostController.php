@@ -43,7 +43,7 @@ class PostController extends Controller
         */
     public function post(Request $req){
         $validator = Validator::make($req->all(),[
-            'title' => 'string|max:20',
+            'title' => 'string|max:20|unique:posts',
             'body' => 'required|string',
         ]);
 
@@ -67,6 +67,8 @@ class PostController extends Controller
         $response = [
             'message' => 'Post Successful'
         ];
+
+        return response()->json($response, 200);
         }
     }
 

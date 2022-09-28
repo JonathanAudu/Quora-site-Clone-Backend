@@ -388,6 +388,58 @@
                     }
                 }
             }
+        },
+        "api/user/posts": {
+            "post": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "user post feeds",
+                "description": "User post feeds",
+                "operationId": "885516744741f5b7dd9faaaf798405b6",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "body"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string|max:20"
+                                    },
+                                    "body": {
+                                        "type": "required|string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Post Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "validation fails",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
         }
     }
 }

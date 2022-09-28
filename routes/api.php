@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SpaceController;
 use App\Http\Controllers\Api\UserProfileController;
 
 /*
@@ -44,6 +45,12 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  // Comment Routes
  Route::post('user/add-comment', [CommentController::class, 'postComment']);
- 
+
+ //save space routes
+ Route::post('space/save', [SpaceController::class, 'topic']);
+
+ //search space routes
+ Route::post('space/topic', [SpaceController::class, 'search']);
+
 
 
