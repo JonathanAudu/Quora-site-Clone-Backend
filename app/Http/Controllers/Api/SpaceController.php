@@ -6,6 +6,7 @@ use App\Models\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class SpaceController extends Controller
@@ -25,20 +26,39 @@ class SpaceController extends Controller
 
             return response()->json($response, 500);
 
-        }else {
+        }
+        $space = $req->space();
+
+        if($req->hasFile('image')){
+            if($space->image){
+                $old_path=public_path().'/uploads/space_pics/'.$space->image;
+                if(File::exists($old_path)){
+                    File::delete($old_path);
+                }
+            }
+          $image_name='profile_photo-'.time().'.'.$req->space->extension();
+          $req->space->move(public_path('/uploads/space_pics/'),$image_name);
+
+        }else{
+
+            $image_name = $space->image;
+
             $validator = $validator->validated();
 
             $space = new Space;
             $space->title = $validator['space_name'];
-            $space->body = $validator['image'];
+            $image_name = $validator['image'];
             $space->save();
             $response = [
                 'message' => 'space created'
             ];
 
             return response()->json($response, 200);
-
         }
+
+
+
+
     }
 
     public function search(Request $req) {

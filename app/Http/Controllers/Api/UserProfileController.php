@@ -25,9 +25,9 @@ class UserProfileController extends Controller
         *               type="object",
         *               required={"name", "profile_credential", "profile_desc", "profile_photo"},
         *               @OA\Property(property="name", type="string"),
-        *               @OA\Property(property="profile_credential", type="string|nullable|max:60")
-        *               @OA\Property(property="profile_desc", type="nullable|string")
-        *               @OA\Property(property="profile_photo", type="file")
+        *               @OA\Property(property="profile_credential", type="string|nullable|max:60"),
+        *               @OA\Property(property="profile_desc", type="nullable|string"),
+        *               @OA\Property(property="profile_photo", type="file"),
         *            ),
         *        ),
         *    ),

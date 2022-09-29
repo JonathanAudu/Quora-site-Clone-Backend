@@ -504,67 +504,6 @@ class AuthController extends Controller
 
         ]);
     }
-   /**
-        * @OA\Post(
-        * path="/api/reset-password/",
-        * tags={"Password oooe"},
-        * summary="user changes password",
-        * description="A user enters email and enters password twice",
-        *     @OA\RequestBody(
-        *         @OA\MediaType(
-        *            mediaType="application/json",
-        *            @OA\Schema(
-        *               type="object",
-        *               required={"email","password","password_confirmation"},
-        *               @OA\Property(property="email", type="string"),
-        *               @OA\Property(property="password", type="string"),
-        *               @OA\Property(property="password_confirmation", type="string")
-        *            ),
-        *        ),
-        *    ),
-        *      @OA\Response(
-        *          response=201,
-        *          description="Added Successfully",
-        *          @OA\JsonContent()
-        *       ),
-        *      @OA\Response(
-        *          response=422,
-        *          description="Unprocessable Entity",
-        *          @OA\JsonContent()
-        *       ),
-        *      @OA\Response(response=400, description="Bad request"),
-        *      @OA\Response(response=404, description="Resource Not Found"),
-        * )
-        */
-    public function resetPasswordww(Request $req){
-        $req->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-
-        $status = Password::reset(
-            $req->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
-
-                $user->save();
-
-                event(new PasswordReset($user));
-            }
-        );
-
-        $status === Password::PASSWORD_RESET;
-        //             ? redirect()->route('login')->with('status', __($status))
-        //             : back()->withErrors(['email' => [__($status)]]);
-        return response()->json([
-            'message' => 'new password confirmed',
-            'status' => $status
-
-        ]);
-    }
 
 
 }
