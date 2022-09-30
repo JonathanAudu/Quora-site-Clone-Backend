@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
@@ -62,7 +63,7 @@ class AuthController extends Controller
             $response = [
                 'status' => 'failure',
                 'status_code' => 400,
-                'message' => "The email has already been taken.",
+                // 'message' => "The email has already been taken.",
                 'errors' => $validator->errors(),
             ];
 
@@ -229,8 +230,8 @@ class AuthController extends Controller
 
 
         $validator = Validator::make($req->all(), [
-            'password' => 'required|string',
-            'id' => 'required'
+            'id' => 'required',
+            'password' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -503,6 +504,38 @@ class AuthController extends Controller
             'status' => $status
 
         ]);
+    }
+
+     /**
+     * @OA\Get(
+     *     path="/api/get-user",
+     *      operationId="getUserDetails",
+     *      tags={"Auth"},
+     *      summary="Get Logged in user",
+     *      description="Get Logged in user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Returns logged in user information",
+     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function userDetails(){
+        try {
+            $id = Auth::user()->id;
+            $user = User::where('id', $id)->first();
+            return response()->json($user, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 500);
+        }
     }
 
 

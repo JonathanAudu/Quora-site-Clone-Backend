@@ -389,10 +389,97 @@
                 }
             }
         },
+        "/api/get-user": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get Logged in user",
+                "description": "Get Logged in user",
+                "operationId": "getUserDetails",
+                "responses": {
+                    "200": {
+                        "description": "Returns logged in user information",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/user/add-comment": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Add a comment under a post",
+                "description": "Add a comment under a post",
+                "operationId": "ad6daf1fa21e07d6159f2559768bb050",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "post_id",
+                                    "user_id",
+                                    "comment"
+                                ],
+                                "properties": {
+                                    "post_id": {
+                                        "type": "integer"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "comment": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Comment added Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "api/user/posts": {
             "post": {
                 "tags": [
-                    "post"
+                    "Post"
                 ],
                 "summary": "user post feeds",
                 "description": "User post feeds",
@@ -421,6 +508,233 @@
                 "responses": {
                     "201": {
                         "description": "Post Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "validation fails",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/user/allposts": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get all Posts",
+                "description": "Get all Posts",
+                "operationId": "890f19968f54d5f81899c4854b56cf19",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unable to post"
+                    }
+                }
+            }
+        },
+        "/api/space/createSpace": {
+            "post": {
+                "tags": [
+                    "Space"
+                ],
+                "summary": "user create space and a logo to it",
+                "description": "A user create space on the platform",
+                "operationId": "afee54c2c033819170c74b48d7ab2a30",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "space_name",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "space_name": {
+                                        "type": "required|string"
+                                    },
+                                    "image": {
+                                        "type": "nullable|image|mimes:jpg,bmp,png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/space/SearchTopic": {
+            "get": {
+                "tags": [
+                    "Space"
+                ],
+                "summary": "Search all spaces",
+                "description": "search all spaces",
+                "operationId": "86fba43d4123b2d807535c0b767e4f7d",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get spaces"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/user/spaces": {
+            "get": {
+                "tags": [
+                    "Space"
+                ],
+                "summary": "Get all spaces",
+                "description": "Get all spaces",
+                "operationId": "6e3ea634e04e391f06e32e21128b6fc3",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get spaces"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/user/spaces/{id}": {
+            "get": {
+                "tags": [
+                    "Space"
+                ],
+                "summary": "Get all spaces by id",
+                "description": "Get all spaces by id",
+                "operationId": "e92d67df4166143ab1e862bc569eb60c",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get spaces"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/user/update-profile": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "profile update",
+                "description": "User update profile",
+                "operationId": "7b08797628c86cdf56fa74321864efe6",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "profile_credential",
+                                    "profile_desc",
+                                    "profile_photo"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "profile_credential": {
+                                        "type": "string|nullable|max:60"
+                                    },
+                                    "profile_desc": {
+                                        "type": "nullable|string"
+                                    },
+                                    "profile_photo": {
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Added Successfully",
                         "content": {
                             "application/json": {
                                 "schema": {}

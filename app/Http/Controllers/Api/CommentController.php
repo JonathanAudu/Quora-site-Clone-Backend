@@ -11,7 +11,7 @@ class CommentController extends Controller
 {
     /**
      * @OA\Post(
-     * path="user/add-comment",
+     * path="api/user/add-comment",
      * tags={"Comment"},
      * summary="Add a comment under a post",
      * description="Add a comment under a post",

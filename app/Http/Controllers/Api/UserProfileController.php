@@ -15,7 +15,7 @@ class UserProfileController extends Controller
      /**
         * @OA\Post(
         * path="api/user/update-profile",
-        * tags={"user"},
+        * tags={"User"},
         * summary="profile update",
         * description="User update profile",
         *     @OA\RequestBody(
