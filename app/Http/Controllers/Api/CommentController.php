@@ -23,7 +23,7 @@ class CommentController extends Controller
      *               required={"post_id", "user_id", "comment"},
      *               @OA\Property(property="post_id", type="integer"),
      *               @OA\Property(property="user_id", type="integer"),
-     *               @OA\Property(property="comment", type="string"),
+     *               @OA\Property(property="body", type="string"),
      *            ),
      *        ),
      *    ),
@@ -45,12 +45,12 @@ class CommentController extends Controller
     {
         try {
             $this->validate($req, [
-                'comment' => 'required'
+                'body' => 'required'
             ]);
             $comment = Comment::create([
                 'post_id' => $req->post_id,
                 'user_id' => $req->user_id,
-                'comment' => $req->comment
+                'body' => $req->body
             ]);
             return response()->json(["message" => "Comment added successfully"], 200);
         } catch (\Throwable $th) {

@@ -14,43 +14,43 @@ use Illuminate\Support\Facades\Validator;
 class SpaceController extends Controller
 {
 
-     /**
-        * @OA\Post(
-        * path="api/user/create-space",
-        * tags={"Space"},
-        * summary="user create space and a logo to it",
-        * description="A user create space on the platform",
-        *     @OA\RequestBody(
-        *         @OA\MediaType(
-        *            mediaType="application/json",
-        *            @OA\Schema(
-        *               type="object",
-        *               required={"space_name","image"},
-        *               @OA\Property(property="space_name", type="required|string"),
-        *               @OA\Property(property="image", type="nullable|image|mimes:jpg,bmp,png")
+    /**
+     * @OA\Post(
+     * path="api/user/create-space",
+     * tags={"Space"},
+     * summary="user create space and a logo to it",
+     * description="A user create space on the platform",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *            mediaType="application/json",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"space_name","image"},
+     *               @OA\Property(property="space_name", type="required|string"),
+     *               @OA\Property(property="image", type="nullable|image|mimes:jpg,bmp,png")
 
-        *            ),
-        *        ),
-        *    ),
-        *      @OA\Response(
-        *          response=201,
-        *          description="Created Successfully",
-        *          @OA\JsonContent()
-        *       ),
-        *      @OA\Response(
-        *          response=422,
-        *          description="Unprocessable Entity",
-        *          @OA\JsonContent()
-        *       ),
-        *      @OA\Response(response=400, description="Bad request"),
-        *      @OA\Response(response=404, description="Resource Not Found"),
-        * )
-        */
+     *            ),
+     *        ),
+     *    ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Created Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     */
     public function createSpace(Request $req)
     {
         $validator = Validator::make($req->all(), [
-           'space_name' => 'required|string',
-           'image' => 'nullable|image|mimes:jpg,bmp,png',
+            'space_name' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,bmp,png',
         ]);
 
         if ($validator->fails()) {
@@ -61,45 +61,38 @@ class SpaceController extends Controller
             ];
 
             return response()->json($response, 500);
-
         }
         $space = $req->space();
 
-        if($req->hasFile('image')){
-            if($space->image){
-                $old_path=public_path().'/uploads/space_pics/'.$space->image;
-                if(File::exists($old_path)){
+        if ($req->hasFile('image')) {
+            if ($space->image) {
+                $old_path = public_path() . '/uploads/space_pics/' . $space->image;
+                if (File::exists($old_path)) {
                     File::delete($old_path);
                 }
             }
-          $image_name='profile_photo-'.time().'.'.$req->space->extension();
-          $req->space->move(public_path('/uploads/space_pics/'),$image_name);
-
-        }else{
+            $image_name = 'profile_photo-' . time() . '.' . $req->space->extension();
+            $req->space->move(public_path('/uploads/space_pics/'), $image_name);
+        } else {
 
             $image_name = $space->image;
 
+            $validator = $validator->validated();
+            $space = new Space;
+            $space->title = $validator['space_name'];
+            $image_name = $validator['image'];
+            $space->user_id = Auth::user()->id;
+            $space->save();
+            $response = [
+                'message' => 'space created'
+            ];
+
+            return response()->json($response, 200);
         }
-
-        $validator = $validator->validated();
-        return $req->user_id;
-        $space = new Space;
-        $space->title = $validator['space_name'];
-        $image_name = $validator['image'];
-        $space->user_id = Auth::user()->id;
-        $space->save();
-        $response = [
-            'message' => 'space created'
-        ];
-
-        return response()->json($response, 200);
-
-
-
     }
 
 
-      /**
+    /**
      * @OA\Get(
      *      path="api/space/SearchTopic",
      *      tags={"Space"},
@@ -120,7 +113,8 @@ class SpaceController extends Controller
      *      )
      *     )
      */
-    public function searchAllSpace(Request $req) {
+    public function searchAllSpace(Request $req)
+    {
         $search_string = $req->search_string;
 
         $search_result = DB::table('posts')
@@ -131,7 +125,7 @@ class SpaceController extends Controller
         return $search_result;
     }
 
-       /**
+    /**
      * @OA\Get(
      *      path="api/user/spaces",
      *      tags={"Space"},
@@ -152,13 +146,14 @@ class SpaceController extends Controller
      *      )
      *     )
      */
-    public function getAllSpace() {
+    public function getAllSpace()
+    {
         $space = Space::all();
         return response()->json($space, 200);
     }
 
 
-          /**
+    /**
      * @OA\Get(
      *      path="api/user/spaces/{user_id}",
      *      tags={"Space"},
@@ -179,11 +174,12 @@ class SpaceController extends Controller
      *      )
      *     )
      */
-    public function getSpace($user_id)  {
-        try{
+    public function getSpace($user_id)
+    {
+        try {
             $space = Space::where('user_id', $user_id)->get();
             return response()->json($space, 200);
-        }catch (Throwable $exception) {
+        } catch (Throwable $exception) {
             return response()->json($exception->getMessage(), 500);
         }
     }

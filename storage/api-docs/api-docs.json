@@ -318,7 +318,7 @@
                     "Password Reset"
                 ],
                 "summary": "user clicks reset link in mail box",
-                "description": "Returns a reset form and comes with $token which contains the reset token. This token\n     *                   should be placed in a hidden form input with value set to the said token",
+                "description": "Returns a reset form and comes with $token which contains the reset token. This token\r\n     *                   should be placed in a hidden form input with value set to the said token",
                 "operationId": "8b81625bcdc3eb2256df93ec9ee83d80",
                 "responses": {
                     "401": {
@@ -476,14 +476,14 @@
                 }
             }
         },
-        "api/user/posts": {
+        "api/user/create-post": {
             "post": {
                 "tags": [
                     "Post"
                 ],
                 "summary": "user post feeds",
                 "description": "User post feeds",
-                "operationId": "885516744741f5b7dd9faaaf798405b6",
+                "operationId": "4b062e0b81bcc015b325957d240fc535",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -494,7 +494,7 @@
                                 ],
                                 "properties": {
                                     "title": {
-                                        "type": "string|max:20"
+                                        "type": "required|string"
                                     },
                                     "body": {
                                         "type": "required|string"
@@ -556,14 +556,93 @@
                 }
             }
         },
-        "/api/space/createSpace": {
+        "/api/space/createQuestion": {
+            "post": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "user create question",
+                "description": "A user create question",
+                "operationId": "abe567ac1d006b552d65fbf1eb8e5f3c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "question_desc"
+                                ],
+                                "properties": {
+                                    "question_desc": {
+                                        "type": "required|string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/user/question/{user_id}": {
+            "get": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "Get all question from users",
+                "description": "Get all questions from users",
+                "operationId": "cb12a3f7aeb559a776c6dc5dabf3496f",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get spaces"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/user/create-space": {
             "post": {
                 "tags": [
                     "Space"
                 ],
                 "summary": "user create space and a logo to it",
                 "description": "A user create space on the platform",
-                "operationId": "afee54c2c033819170c74b48d7ab2a30",
+                "operationId": "97d13b260ffd81b771f47e391a7f99d2",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -667,14 +746,14 @@
                 }
             }
         },
-        "api/user/spaces/{id}": {
+        "api/user/spaces/{user_id}": {
             "get": {
                 "tags": [
                     "Space"
                 ],
                 "summary": "Get all spaces by id",
                 "description": "Get all spaces by id",
-                "operationId": "e92d67df4166143ab1e862bc569eb60c",
+                "operationId": "1d0c08f544c0658cddad92c34a59d2e9",
                 "responses": {
                     "200": {
                         "description": "Successful",
@@ -724,7 +803,7 @@
                                         "type": "nullable|string"
                                     },
                                     "profile_photo": {
-                                        "type": "file"
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
