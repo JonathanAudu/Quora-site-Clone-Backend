@@ -9,14 +9,14 @@ class Space extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    
     public function getuser()
     {
         return $this->belongsTo(User::class);
     }
 
-    protected $table = 'spaces';
-
     protected $fillable = [
         'space_name',
+        'image'
     ];
 }

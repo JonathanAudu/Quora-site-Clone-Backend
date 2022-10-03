@@ -42,6 +42,7 @@ Route::post('auth/forgot-password', [AuthController::class, 'requestResetMail'])
 Route::get('auth/reset-password/{token}', [AuthController::class, 'requestResetForm'])->middleware('guest')->name('password.reset');
 Route::post('auth/reset-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.update');
 Route::post('user/update-profile', [UserProfileController::class, 'update_profile'])->middleware('auth:sanctum');
+Route::get('user/userProfile', [PostController::class, 'getUserProfile']);
 
  // Comment Routes
  Route::post('user/add-comment', [CommentController::class, 'postComment']);
@@ -55,6 +56,7 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
  //Post Routes
  Route::post('user/create-post', [PostController::class, 'createPost'])->middleware('auth:sanctum');
  Route::get('user/allposts', [PostController::class, 'getAllPost']);
+
 
 
 

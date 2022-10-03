@@ -441,7 +441,7 @@
                                     "user_id": {
                                         "type": "integer"
                                     },
-                                    "comment": {
+                                    "body": {
                                         "type": "string"
                                     }
                                 },

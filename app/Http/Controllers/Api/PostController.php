@@ -46,7 +46,7 @@ class PostController extends Controller
     public function createPost(Request $req)
     {
         $validator = Validator::make($req->all(), [
-            'title' => 'required|string',
+            'title' => 'required|string|max:255',
             'body' => 'required|string',
         ]);
 

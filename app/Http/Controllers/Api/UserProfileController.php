@@ -84,4 +84,37 @@ class UserProfileController extends Controller
 
         return response()->json(['message' => 'Profile successfully updated',], 200);
     }
+
+
+
+   /**
+     * @OA\Get(
+     *      path=api/user/userProfile",
+     *      tags={"User"},
+     *      summary="Get user information",
+     *      description="Get user information",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful",
+     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function getUserProfile(Request $req){
+        try {
+            $user_id = $req->user()->id;
+            $user = User::find($user_id);
+            return response()->json(['status'=>'true', 'message'=>"User profile", 'data'=>$user]);
+        } catch (\Exception $e) {
+            return response()->json(['status'=>'false', 'message'=>$e->getMessage(), 'data'=>[]], 500);
+        }
+    }
 }

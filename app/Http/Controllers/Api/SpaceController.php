@@ -77,18 +77,18 @@ class SpaceController extends Controller
 
             $image_name = $space->image;
 
-            $validator = $validator->validated();
-            $space = new Space;
-            $space->title = $validator['space_name'];
-            $image_name = $validator['image'];
-            $space->user_id = Auth::user()->id;
-            $space->save();
-            $response = [
-                'message' => 'space created'
-            ];
-
-            return response()->json($response, 200);
         }
+        $validator = $validator->validated();
+        $space = new Space;
+        $space->space_name = $validator['space_name'];
+        $image_name = $validator['image'];
+        $space->user_id = Auth::user()->id;
+        $space->save();
+        $response = [
+            'message' => 'space created'
+        ];
+
+        return response()->json($response, 200);
     }
 
 
