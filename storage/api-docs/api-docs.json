@@ -318,7 +318,7 @@
                     "Password Reset"
                 ],
                 "summary": "user clicks reset link in mail box",
-                "description": "Returns a reset form and comes with $token which contains the reset token. This token\r\n     *                   should be placed in a hidden form input with value set to the said token",
+                "description": "Returns a reset form and comes with $token which contains the reset token. This token\n     *                   should be placed in a hidden form input with value set to the said token",
                 "operationId": "8b81625bcdc3eb2256df93ec9ee83d80",
                 "responses": {
                     "401": {
@@ -640,8 +640,8 @@
                 "tags": [
                     "Space"
                 ],
-                "summary": "user create space and a logo to it",
-                "description": "A user create space on the platform",
+                "summary": "user create space and add a logo to it",
+                "description": "A user create space on the platform with a logo",
                 "operationId": "97d13b260ffd81b771f47e391a7f99d2",
                 "requestBody": {
                     "content": {
@@ -656,7 +656,7 @@
                                         "type": "required|string"
                                     },
                                     "image": {
-                                        "type": "nullable|image|mimes:jpg,bmp,png"
+                                        "type": "mimes:jpg,bmp,png"
                                     }
                                 },
                                 "type": "object"

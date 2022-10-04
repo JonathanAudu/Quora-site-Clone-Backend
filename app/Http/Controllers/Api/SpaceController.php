@@ -18,8 +18,8 @@ class SpaceController extends Controller
      * @OA\Post(
      * path="api/user/create-space",
      * tags={"Space"},
-     * summary="user create space and a logo to it",
-     * description="A user create space on the platform",
+     * summary="user create space and add a logo to it",
+     * description="A user create space on the platform with a logo",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *            mediaType="application/json",
@@ -27,7 +27,7 @@ class SpaceController extends Controller
      *               type="object",
      *               required={"space_name","image"},
      *               @OA\Property(property="space_name", type="required|string"),
-     *               @OA\Property(property="image", type="nullable|image|mimes:jpg,bmp,png")
+     *               @OA\Property(property="image", type="mimes:jpg,bmp,png")
 
      *            ),
      *        ),
@@ -50,48 +50,35 @@ class SpaceController extends Controller
     {
         $validator = Validator::make($req->all(), [
             'space_name' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,bmp,png',
+            'image' => 'mimes:jpeg,png,bmp',
         ]);
 
+
         if ($validator->fails()) {
-            $response = [
-                'status' => 'failure',
-                'status_code' => 500,
+            return response()->json([
+                'message' => 'Validations fails',
                 'errors' => $validator->errors(),
-            ];
-
-            return response()->json($response, 500);
+            ], 422);
         }
-        $space = $req->space();
-
-        if ($req->hasFile('image')) {
-            if ($space->image) {
-                $old_path = public_path() . '/uploads/space_pics/' . $space->image;
-                if (File::exists($old_path)) {
-                    File::delete($old_path);
-                }
-            }
-            $image_name = 'profile_photo-' . time() . '.' . $req->space->extension();
-            $req->space->move(public_path('/uploads/space_pics/'), $image_name);
-        } else {
-
-            $image_name = $space->image;
-
+        $space = $req->Space();
+        if($req->file('image')){
+            $file = $req->file('image');
+            $imagename = 'image-' . time() . '.' . $req->image->extension();
+            $file->move(public_path('/uploads/space_image/'), $imagename);
+            $imagename = $space->image;
         }
-        $validator = $validator->validated();
-        $space = new Space;
-        $space->space_name = $validator['space_name'];
-        $image_name = $validator['image'];
-        $space->user_id = Auth::user()->id;
-        $space->save();
-        $response = [
-            'message' => 'space created'
-        ];
+        else {
 
-        return response()->json($response, 200);
+            $validator = $validator->validated();
+
+            $space = new Space;
+            $space->space_name = $validator['space_name'];
+            $imagename = $validator['image'];
+            $space->user_id = Auth::user()->id;
+            $space->save();
+        return response()->json(['message' => 'Space Added',], 200);
+        }
     }
-
-
     /**
      * @OA\Get(
      *      path="api/space/SearchTopic",

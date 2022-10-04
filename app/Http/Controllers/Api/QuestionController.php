@@ -6,6 +6,7 @@ use Throwable;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
@@ -41,7 +42,7 @@ class QuestionController extends Controller
         *      @OA\Response(response=404, description="Resource Not Found"),
         * )
         */
-    public function SaveQuestion(Request $req){
+    public function AskQuestion(Request $req){
         $validator = Validator::make($req->all(), [
             'questions_desc' => 'required|string',
         ]);
@@ -56,7 +57,7 @@ class QuestionController extends Controller
 
         $question = new Question();
         $question->question_desc = $validator['question_desc'];
-        $question->id = $req->user_id;
+        $question->user_id = Auth::user()->id;
         $question->save();
     }
 
