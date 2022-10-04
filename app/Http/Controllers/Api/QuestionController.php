@@ -44,7 +44,7 @@ class QuestionController extends Controller
         */
     public function AskQuestion(Request $req){
         $validator = Validator::make($req->all(), [
-            'questions_desc' => 'required|string',
+            'question_desc' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -59,6 +59,11 @@ class QuestionController extends Controller
         $question->question_desc = $validator['question_desc'];
         $question->user_id = Auth::user()->id;
         $question->save();
+        $response = [
+            'message' => 'Successful'
+        ];
+
+        return response()->json($response, 200);
     }
 
 

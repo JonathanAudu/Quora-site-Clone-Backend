@@ -60,7 +60,7 @@ Route::get('user/userProfile', [PostController::class, 'getUserProfile']);
 
  //Question Route
  Route::post('user/question', [QuestionController::class, 'AskQuestion'])->middleware('auth:sanctum');
- Route::get('user/question/{user_id}', [QuestionController::class, 'AskQuestion'])
+ Route::get('user/question/{user_id}', [QuestionController::class, 'AskQuestion']);
 
 
 
