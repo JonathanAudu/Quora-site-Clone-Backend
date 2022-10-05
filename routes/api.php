@@ -23,7 +23,7 @@ use App\Http\Controllers\Api\UserProfileController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('auth/get-user', [AuthController::class, 'userDetails']);
+Route::get('auth/get-user', [AuthController::class, 'userDetails'])->middleware('auth:sanctum');
 
 Route::post('auth/register', [AuthController::class, 'register']);
 
@@ -42,8 +42,11 @@ Route::post('auth/forgot-password', [AuthController::class, 'requestResetMail'])
 
 Route::get('auth/reset-password/{token}', [AuthController::class, 'requestResetForm'])->middleware('guest')->name('password.reset');
 Route::post('auth/reset-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.update');
+
+
+//UserProfile Route
+Route::get('user/userProfile/{id}', [UserProfileController::class, 'getUserProfile'])->middleware('auth:sanctum');
 Route::post('user/update-profile', [UserProfileController::class, 'update_profile'])->middleware('auth:sanctum');
-Route::get('user/userProfile', [PostController::class, 'getUserProfile']);
 
  // Comment Routes
  Route::post('user/add-comment', [CommentController::class, 'postComment']);

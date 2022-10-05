@@ -534,7 +534,7 @@ class AuthController extends Controller
             $user = User::where('id', $id)->first();
             return response()->json($user, 200);
         } catch (\Throwable $th) {
-            return response()->json($th->getMessage(), 500);
+            return response()->json($th->getMessage(), 500)->header("Access-Control-Allow-Origin",  "*");
         }
     }
 

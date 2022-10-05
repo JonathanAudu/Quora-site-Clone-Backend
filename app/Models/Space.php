@@ -15,8 +15,8 @@ class Space extends Model
         return $this->belongsTo(User::class);
     }
 
-    // protected $fillable = [
-    //     'space_name',
-    //     'image'
-    // ];
+    protected $fillable = [
+        'space_name',
+        'image'
+    ];
 }

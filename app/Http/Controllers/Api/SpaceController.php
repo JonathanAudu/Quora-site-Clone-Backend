@@ -60,25 +60,23 @@ class SpaceController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-        $space = $req->Space();
+        $space = $req->space_name;
         if($req->file('image')){
             $file = $req->file('image');
             $imagename = 'image-' . time() . '.' . $req->image->extension();
             $file->move(public_path('/uploads/space_image/'), $imagename);
-            $imagename = $space->image;
         }
-        else {
-
             $validator = $validator->validated();
-
             $space = new Space;
             $space->space_name = $validator['space_name'];
-            $imagename = $validator['image'];
+            $space->image = $imagename;
             $space->user_id = Auth::user()->id;
             $space->save();
         return response()->json(['message' => 'Space Added',], 200);
-        }
+
     }
+
+
     /**
      * @OA\Get(
      *      path="api/space/SearchTopic",

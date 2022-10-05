@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -89,7 +91,7 @@ class UserProfileController extends Controller
 
    /**
      * @OA\Get(
-     *      path=api/user/userProfile",
+     *      path= api/user/userProfile",
      *      tags={"User"},
      *      summary="Get user information",
      *      description="Get user information",
@@ -108,11 +110,11 @@ class UserProfileController extends Controller
      *      )
      *     )
      */
-    public function getUserProfile(Request $req){
+    public function getUserProfile(Request $req, $id){
         try {
-            $user_id = $req->user()->id;
-            $user = User::find($user_id);
-            return response()->json(['status'=>'true', 'message'=>"User profile", 'data'=>$user]);
+
+            $user = DB::table('users')->where("id", $id)->first();
+            return response()->json(['data'=>$user]);
         } catch (\Exception $e) {
             return response()->json(['status'=>'false', 'message'=>$e->getMessage(), 'data'=>[]], 500);
         }
