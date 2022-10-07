@@ -32,7 +32,7 @@ class EmploymentCredentialController extends Controller
      *    ),
      *      @OA\Response(
      *          response=201,
-     *          description="Successfully",
+     *          description="Successful",
      *          @OA\JsonContent()
      *       ),
      *      @OA\Response(
