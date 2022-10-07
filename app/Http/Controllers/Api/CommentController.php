@@ -47,7 +47,7 @@ class CommentController extends Controller
             $this->validate($req, [
                 'body' => 'required'
             ]);
-            $comment = Comment::create([
+            Comment::create([
                 'post_id' => $req->post_id,
                 'user_id' => $req->user_id,
                 'body' => $req->body

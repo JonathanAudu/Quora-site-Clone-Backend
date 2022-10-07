@@ -5,9 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SpaceController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\EducationCredentialController;
+use App\Http\Controllers\Api\EmploymentCredentialController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\UserProfileController;
+use App\Models\EmploymentCredential;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +68,9 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
  Route::post('user/question', [QuestionController::class, 'AskQuestion'])->middleware('auth:sanctum');
  Route::get('user/question/{user_id}', [QuestionController::class, 'AskQuestion']);
 
+ //Credentials Route
+ Route::post('credential/employment', [EmploymentCredentialController::class, 'EmploymentDetails'])->middleware('auth:sanctum');
+ Route::post('credential/education', [EducationCredentialController::class, 'EducationDetails'])->middleware('auth:sanctum');
 
 
 

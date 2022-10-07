@@ -53,7 +53,7 @@ class UserProfileController extends Controller
             'name' => 'required|string',
             'profile_credential' => 'nullable|string|max:60',
             'profile_desc' => 'nullable|string',
-            'profile_photo' => 'nullable|image|mimes:jpg,bmp,png',
+            'profile_photo' => 'mimes:jpg,bmp,png',
         ]);
         if ($validator->fails()) {
             return response()->json([

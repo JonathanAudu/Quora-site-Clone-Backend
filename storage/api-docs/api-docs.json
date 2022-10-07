@@ -476,6 +476,136 @@
                 }
             }
         },
+        "api/credential/education": {
+            "post": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "user update education credentials",
+                "description": "user update education credentials",
+                "operationId": "702a0a41cecd0eba028037bfdd745d66",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "school",
+                                    "primary_major",
+                                    "secondary_major",
+                                    "degree_type",
+                                    "graduation_type"
+                                ],
+                                "properties": {
+                                    "school": {
+                                        "type": "nullable|string"
+                                    },
+                                    "primary_major": {
+                                        "type": "nullable|string"
+                                    },
+                                    "secondary_major": {
+                                        "type": "nullable|string"
+                                    },
+                                    "degree_type": {
+                                        "type": "nullable|string"
+                                    },
+                                    "graduation_type": {
+                                        "type": "nullable|string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/credential/employment": {
+            "post": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "user update employment credentials",
+                "description": "user update employment credentials",
+                "operationId": "11aac243f3e8f8a1b728c9314a9ce382",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "position",
+                                    "company",
+                                    "start_year",
+                                    "end_year"
+                                ],
+                                "properties": {
+                                    "position": {
+                                        "type": "nullable|string|max:50"
+                                    },
+                                    "company": {
+                                        "type": "nullable|string"
+                                    },
+                                    "start_year": {
+                                        "type": "nullable|integer"
+                                    },
+                                    "end_year": {
+                                        "type": "nullable|integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "api/user/create-post": {
             "post": {
                 "tags": [
@@ -563,7 +693,7 @@
                 ],
                 "summary": "user create question",
                 "description": "A user create question",
-                "operationId": "abe567ac1d006b552d65fbf1eb8e5f3c",
+                "operationId": "82d22483199fc6f2189b2b15c27b8a87",
                 "requestBody": {
                     "content": {
                         "application/json": {
