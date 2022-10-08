@@ -69,11 +69,29 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
  Route::post('user/question', [QuestionController::class, 'AskQuestion'])->middleware('auth:sanctum');
  Route::get('user/question/{user_id}', [QuestionController::class, 'AskQuestion']);
 
- //Credentials Route
+
+ //Credentials employment Route
  Route::post('credential/employment', [EmploymentCredentialController::class, 'EmploymentDetails'])->middleware('auth:sanctum');
+
+ Route::post('credential/employment/{id}', [EmploymentCredentialController::class, 'UpdateEmployment'])->middleware('auth:sanctum');
+
+ Route::get('credential/employment/{user_id}', [EmploymentCredentialController::class, 'getEmploymentDetails']);
+
+
+//Credentials education Route
  Route::post('credential/education', [EducationCredentialController::class, 'EducationDetails'])->middleware('auth:sanctum');
+
+ Route::post('credential/education/{id}', [EducationCredentialController::class, 'UpdateEducation'])->middleware('auth:sanctum');
+
+ Route::get('credential/education/{user_id}', [EducationCredentialController::class, 'getEducationDetails']);
+
+
+//Credentials location Route
  Route::post('credential/location', [LocationCredentialController::class, 'LocationDetails'])->middleware('auth:sanctum');
 
+ Route::post('credential/location/{id}', [LocationCredentialController::class, 'UpdateLocation'])->middleware('auth:sanctum');
+
+ Route::post('credential/location/{user_id}', [LocationCredentialController::class, 'getLocationDetails']);
 
 
 
