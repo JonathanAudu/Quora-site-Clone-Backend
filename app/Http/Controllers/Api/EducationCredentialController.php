@@ -80,7 +80,7 @@ class EducationCredentialController extends Controller
 
           /**
      * @OA\Post(
-     * path="api/credential/education{id}",
+     * path="api/credential/education/{id}",
      * tags={"Credential"},
      * summary="user update education credentials",
      * description="user update education credentials",
@@ -147,7 +147,7 @@ class EducationCredentialController extends Controller
 
      /**
      * @OA\Get(
-     *      path= "api/credential/education{user_id}",
+     *      path= "api/credential/education/{user_id}",
      *      tags={"Credential"},
      *      summary="Get user education details",
      *      description="Get user education details",

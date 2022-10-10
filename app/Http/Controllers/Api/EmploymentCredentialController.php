@@ -78,7 +78,7 @@ class EmploymentCredentialController extends Controller
 
         /**
      * @OA\Post(
-     * path="api/credential/employment{id}",
+     * path="api/credential/employment/{id}",
      * tags={"Credential"},
      * summary="user update employment credentials",
      * description="user update employment credentials",
@@ -133,7 +133,7 @@ class EmploymentCredentialController extends Controller
 
  /**
      * @OA\Get(
-     *      path= "api/credential/employment{user_id}",
+     *      path= "api/credential/employment/{user_id}",
      *      tags={"Credential"},
      *      summary="Get user employment details",
      *      description="Get user employment details",

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SpaceController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\EducationCredentialController;
 use App\Http\Controllers\Api\EmploymentCredentialController;
+use App\Http\Controllers\Api\LikePostController;
 use App\Http\Controllers\Api\LocationCredentialController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\QuestionController;
@@ -63,7 +64,7 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  //Post Routes
  Route::post('user/create-post', [PostController::class, 'createPost'])->middleware('auth:sanctum');
- Route::get('user/allposts', [PostController::class, 'getAllPost']);
+ Route::get('user/allposts', [PostController::class, 'getAllPosts']);
 
  //Question Route
  Route::post('user/question', [QuestionController::class, 'AskQuestion'])->middleware('auth:sanctum');
@@ -93,6 +94,10 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  Route::post('credential/location/{user_id}', [LocationCredentialController::class, 'getLocationDetails']);
 
+
+ //Likes Route
+ Route::post('user/likepost', [LikePostController::class, 'PostsLike']);
+ Route::post('user/likecomment', [LikePostController::class, 'CommentsLike']);
 
 
 

@@ -74,7 +74,7 @@ class LocationCredentialController extends Controller
 
     /**
      * @OA\Post(
-     * path="api/credential/location{id}",
+     * path="api/credential/location/{id}",
      * tags={"Credential"},
      * summary="user update location credentials",
      * description="user update location credentials",
@@ -134,7 +134,7 @@ class LocationCredentialController extends Controller
 
     /**
      * @OA\Get(
-     *      path= "api/credential/location{user_id}",
+     *      path= "api/credential/location/{user_id}",
      *      tags={"Credential"},
      *      summary="Get user location details",
      *      description="Get user location details",
