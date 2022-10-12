@@ -164,7 +164,7 @@ class EmploymentCredentialController extends Controller
 
      /**
         * @OA\Delete(
-        * path="/api/deleteEmployment/{id}",
+        * path="/delete/Employment/{id}",
         * tags={"Delete"},
         * summary="Delete data by id",
         * description="Delete data by id",
@@ -186,7 +186,7 @@ class EmploymentCredentialController extends Controller
         *      @OA\Response(response=404, description="Resource Not Found"),
         * )
         */
-        public function destroy($id)
+        public function destroyEmployment($id)
         {
             $Credentials = Employmentcredential::find($id);
             $Credentials -> delete();

@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\LocationCredentialController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\UserProfileController;
-
+use App\Models\Educationcredential;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +79,8 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  Route::get('credential/employment/{user_id}', [EmploymentCredentialController::class, 'getEmploymentDetails']);
 
+ Route::delete('/delete/Employment/{id}', [EmploymentCredentialController::class, 'destroyEmployment']);
+
 
 //Credentials education Route
  Route::post('credential/education', [EducationCredentialController::class, 'EducationDetails'])->middleware('auth:sanctum');
@@ -87,17 +89,19 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  Route::get('credential/education/{user_id}', [EducationCredentialController::class, 'getEducationDetails']);
 
- Route::delete('');
+ Route::delete('delete/Education/{id}', [EducationCredentialController::class, 'destroyEducation']);
 
 
 
-//Credentials location Route
+
+ //Credentials location Route
  Route::post('credential/location', [LocationCredentialController::class, 'LocationDetails'])->middleware('auth:sanctum');
 
  Route::post('credential/location/{id}', [LocationCredentialController::class, 'UpdateLocation'])->middleware('auth:sanctum');
 
  Route::get('credential/location/{user_id}', [LocationCredentialController::class, 'getLocationDetails']);
 
+ Route::delete('delete/location/{id}', [LocationCredentialController::class, 'destroyLocation']);
 
  //PostLikes Route
  Route::post('post/upvotes', [LikePostController::class, 'PostsLike'])->middleware('auth:sanctum');
