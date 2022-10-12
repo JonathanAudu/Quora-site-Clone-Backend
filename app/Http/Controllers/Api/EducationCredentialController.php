@@ -27,7 +27,7 @@ class EducationCredentialController extends Controller
      *               @OA\Property(property="primary_major", type="nullable|string"),
      *               @OA\Property(property="secondary_major", type="nullable|string"),
      *               @OA\Property(property="degree_type", type="nullable|string"),
-     *               @OA\Property(property="graduation_type", type="nullable|string"),
+     *               @OA\Property(property="graduation_year", type="nullable|string"),
 
      *            ),
      *        ),
@@ -94,7 +94,7 @@ class EducationCredentialController extends Controller
      *               @OA\Property(property="primary_major", type="nullable|string"),
      *               @OA\Property(property="secondary_major", type="nullable|string"),
      *               @OA\Property(property="degree_type", type="nullable|string"),
-     *               @OA\Property(property="graduation_type", type="nullable|string"),
+     *               @OA\Property(property="graduation_year", type="nullable|string"),
 
      *            ),
      *        ),
@@ -177,4 +177,34 @@ class EducationCredentialController extends Controller
     }
 
 
+     /**
+        * @OA\Delete(
+        * path="/api/deleteEducation/{id}",
+        * tags={"Delete"},
+        * summary="Delete data by id",
+        * description="Delete data by id",
+        *     @OA\RequestBody(
+        *         @OA\MediaType(
+        *            mediaType="application/json",
+        *            @OA\Schema(
+        *               type="integer",
+        *               required={"true"}
+        *            ),
+        *        ),
+        *    ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="ok",
+        *          @OA\JsonContent()
+        *       ),
+        *      @OA\Response(response=400, description="Bad request"),
+        *      @OA\Response(response=404, description="Resource Not Found"),
+        * )
+        */
+    public function destroy($id)
+    {
+        $Credentials = Educationcredential::find($id);
+        $Credentials -> delete();
+        return response()->json(null);
+    }
 }

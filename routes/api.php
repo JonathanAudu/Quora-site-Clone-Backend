@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SpaceController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\EducationCredentialController;
 use App\Http\Controllers\Api\EmploymentCredentialController;
+use App\Http\Controllers\Api\LikeCommentController;
 use App\Http\Controllers\Api\LikePostController;
 use App\Http\Controllers\Api\LocationCredentialController;
 use App\Http\Controllers\Api\PostController;
@@ -86,18 +87,29 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  Route::get('credential/education/{user_id}', [EducationCredentialController::class, 'getEducationDetails']);
 
+ Route::delete('');
+
+
 
 //Credentials location Route
  Route::post('credential/location', [LocationCredentialController::class, 'LocationDetails'])->middleware('auth:sanctum');
 
  Route::post('credential/location/{id}', [LocationCredentialController::class, 'UpdateLocation'])->middleware('auth:sanctum');
 
- Route::post('credential/location/{user_id}', [LocationCredentialController::class, 'getLocationDetails']);
+ Route::get('credential/location/{user_id}', [LocationCredentialController::class, 'getLocationDetails']);
 
 
- //Likes Route
- Route::post('user/likepost', [LikePostController::class, 'PostsLike']);
- Route::post('user/likecomment', [LikePostController::class, 'CommentsLike']);
+ //PostLikes Route
+ Route::post('post/upvotes', [LikePostController::class, 'PostsLike'])->middleware('auth:sanctum');
+ Route::post('post/downvotes', [LikePostController::class, 'PostsDislike'])->middleware('auth:sanctum');
+ Route::get('post/votes/{post_id}', [LikePostController::class, 'getLikeCount']);
+
+
+
+ //CommentLikes Route
+ Route::post('comment/upvotes', [LikeCommentController::class, 'CommentsLike'])->middleware('auth:sanctum');
+ Route::post('post/downvotes', [LikeCommentController::class, 'CommentDislike'])->middleware('auth:sanctum');
+ Route::get('comment/votes/{post_id}', [LikeCommentController::class, 'getLikeCount']);
 
 
 

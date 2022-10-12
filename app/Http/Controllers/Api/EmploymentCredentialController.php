@@ -161,4 +161,35 @@ class EmploymentCredentialController extends Controller
             return response()->json(['status'=>'false', 'message'=>$e->getMessage(), 'data'=>[]], 500);
         }
     }
+
+     /**
+        * @OA\Delete(
+        * path="/api/deleteEmployment/{id}",
+        * tags={"Delete"},
+        * summary="Delete data by id",
+        * description="Delete data by id",
+        *     @OA\RequestBody(
+        *         @OA\MediaType(
+        *            mediaType="application/json",
+        *            @OA\Schema(
+        *               type="integer",
+        *               required={"true"}
+        *            ),
+        *        ),
+        *    ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="ok",
+        *          @OA\JsonContent()
+        *       ),
+        *      @OA\Response(response=400, description="Bad request"),
+        *      @OA\Response(response=404, description="Resource Not Found"),
+        * )
+        */
+        public function destroy($id)
+        {
+            $Credentials = Employmentcredential::find($id);
+            $Credentials -> delete();
+            return response()->json(null);
+        }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use th;
+use Throwable;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -55,6 +56,36 @@ class CommentController extends Controller
             return response()->json(["message" => "Comment added successfully"], 200);
         } catch (\Throwable $th) {
             return response()->json($th, 500);
+        }
+    }
+
+          /**
+     * @OA\Get(
+     *      path="api/user/comments/{post_id}",
+     *      tags={"Commment"},
+     *      summary="Get comments from post",
+     *      description="Get comments from post",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful",
+     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unable to get comments",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function GetComment($post_id){
+        try{
+            $comments = Comment::where('post_id', $post_id)->get();
+            return response()->json($comments, 200);
+        }catch  (Throwable $exception) {
+            return response()->json($exception->getMessage(), 500);
         }
     }
 }

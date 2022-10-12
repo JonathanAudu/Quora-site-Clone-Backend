@@ -80,7 +80,7 @@ class QuestionController extends Controller
      *       ),
      *      @OA\Response(
      *          response=401,
-     *          description="Unable to get spaces",
+     *          description="Unable to get question",
      *      ),
      *      @OA\Response(
      *          response=403,

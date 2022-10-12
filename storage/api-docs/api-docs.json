@@ -476,6 +476,34 @@
                 }
             }
         },
+        "api/user/comments/{post_id}": {
+            "get": {
+                "tags": [
+                    "Commment"
+                ],
+                "summary": "Get comments from post",
+                "description": "Get comments from post",
+                "operationId": "7b6fea5f10ca0dee45112a4a532d920c",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get comments"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
         "api/credential/education": {
             "post": {
                 "tags": [
@@ -508,7 +536,7 @@
                                     "degree_type": {
                                         "type": "nullable|string"
                                     },
-                                    "graduation_type": {
+                                    "graduation_year": {
                                         "type": "nullable|string"
                                     }
                                 },
@@ -528,6 +556,139 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/credential/education/{id}": {
+            "post": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "user update education credentials",
+                "description": "user update education credentials",
+                "operationId": "fe06c10b9256d3d86cfc446822e31dbd",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "school",
+                                    "primary_major",
+                                    "secondary_major",
+                                    "degree_type",
+                                    "graduation_type"
+                                ],
+                                "properties": {
+                                    "school": {
+                                        "type": "nullable|string"
+                                    },
+                                    "primary_major": {
+                                        "type": "nullable|string"
+                                    },
+                                    "secondary_major": {
+                                        "type": "nullable|string"
+                                    },
+                                    "degree_type": {
+                                        "type": "nullable|string"
+                                    },
+                                    "graduation_year": {
+                                        "type": "nullable|string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/credential/education/{user_id}": {
+            "get": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "Get user education details",
+                "description": "Get user education details",
+                "operationId": "e12e3d7e5c4e73d17ebe6686435aa6c9",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/deleteEducation/{id}": {
+            "delete": {
+                "tags": [
+                    "Delete"
+                ],
+                "summary": "Delete data by id",
+                "description": "Delete data by id",
+                "operationId": "827b2bc0ad5fc8ef2485b35d45199740",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "true"
+                                ],
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -606,6 +767,380 @@
                 }
             }
         },
+        "api/credential/employment/{id}": {
+            "post": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "user update employment credentials",
+                "description": "user update employment credentials",
+                "operationId": "c29060fb24aa1309052dc66dc592b0e1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "position",
+                                    "company",
+                                    "start_year",
+                                    "end_year"
+                                ],
+                                "properties": {
+                                    "position": {
+                                        "type": "nullable|string|max:50"
+                                    },
+                                    "company": {
+                                        "type": "nullable|string"
+                                    },
+                                    "start_year": {
+                                        "type": "nullable|integer"
+                                    },
+                                    "end_year": {
+                                        "type": "nullable|integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/credential/employment/{user_id}": {
+            "get": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "Get user employment details",
+                "description": "Get user employment details",
+                "operationId": "a7055242607b6c91e71c6bb57073c0a7",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/deleteEmployment/{id}": {
+            "delete": {
+                "tags": [
+                    "Delete"
+                ],
+                "summary": "Delete data by id",
+                "description": "Delete data by id",
+                "operationId": "a394e193bb482807528773d70defec8a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "true"
+                                ],
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/comment/upvotes": {
+            "post": {
+                "tags": [
+                    "CommentVote"
+                ],
+                "summary": "user likes a comment",
+                "description": "A user likes a comment",
+                "operationId": "b03341e1472eeb109dfcfc533f24783a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "post_id",
+                                    "like",
+                                    "dislike"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "required|integer"
+                                    },
+                                    "post_id": {
+                                        "type": "required|integer"
+                                    },
+                                    "like": {
+                                        "type": "required|boolean"
+                                    },
+                                    "dislike": {
+                                        "type": "required|boolean|default(0)"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "You like this comment",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/post/downvotes": {
+            "post": {
+                "tags": [
+                    "PostVote"
+                ],
+                "summary": "user dislikes a comment",
+                "description": "A user dislikes a comment",
+                "operationId": "7bedc600e37d51a87bf67c57c4853abf",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "post_id",
+                                    "like",
+                                    "dislike"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "required|integer"
+                                    },
+                                    "post_id": {
+                                        "type": "required|integer"
+                                    },
+                                    "like": {
+                                        "type": "required|boolean"
+                                    },
+                                    "dislike": {
+                                        "type": "required|boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "You dislike this comment",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/comment/votes/{post_id}": {
+            "get": {
+                "tags": [
+                    "CommentVote"
+                ],
+                "summary": "Get count of votes of comments",
+                "description": "Get count of votes of comments",
+                "operationId": "0cb3a031bf298734ccc9360e3f26ed3a",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get count of votes"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/post/upvotes": {
+            "post": {
+                "tags": [
+                    "PostVote"
+                ],
+                "summary": "user likes a post",
+                "description": "A user likes a post",
+                "operationId": "7a8de6f95d67444acb7f66df941b7030",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "post_id",
+                                    "like",
+                                    "dislike"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "type": "required|integer"
+                                    },
+                                    "post_id": {
+                                        "type": "required|integer"
+                                    },
+                                    "like": {
+                                        "type": "required|boolean"
+                                    },
+                                    "dislike": {
+                                        "type": "required|boolean|default(0)"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "You like this post",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/post/votes/{post_id}": {
+            "get": {
+                "tags": [
+                    "PostVote"
+                ],
+                "summary": "Get count of votes from post",
+                "description": "Get count of votes from post",
+                "operationId": "43506f45b4af14e6a60f42a501299a50",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unable to get count of votes"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
         "api/credential/location": {
             "post": {
                 "tags": [
@@ -650,6 +1185,131 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/credential/location/{id}": {
+            "post": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "user update location credentials",
+                "description": "user update location credentials",
+                "operationId": "a9672f2eb2c867e2695fe9b46030b911",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "location",
+                                    "start_year",
+                                    "end_year"
+                                ],
+                                "properties": {
+                                    "location": {
+                                        "type": "required|string"
+                                    },
+                                    "start_year": {
+                                        "type": "nullable|integer"
+                                    },
+                                    "end_year": {
+                                        "type": "nullable|integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/credential/location/{user_id}": {
+            "get": {
+                "tags": [
+                    "Credential"
+                ],
+                "summary": "Get user location details",
+                "description": "Get user location details",
+                "operationId": "3521d7bc42fe4522764f786bcdf2e00e",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/deleteLocation/{id}": {
+            "delete": {
+                "tags": [
+                    "Delete"
+                ],
+                "summary": "Delete data by id",
+                "description": "Delete data by id",
+                "operationId": "c69e0d5c00b55789045ac8fcc09ab294",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "true"
+                                ],
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -816,7 +1476,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unable to get spaces"
+                        "description": "Unable to get question"
                     },
                     "403": {
                         "description": "Forbidden"

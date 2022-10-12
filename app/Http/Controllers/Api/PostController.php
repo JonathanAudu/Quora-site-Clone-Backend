@@ -99,7 +99,7 @@ class PostController extends Controller
     public function getAllPosts()
     {
         try {
-            $posts = Post::all();
+            $posts = Post::all()->with();
             return response()->json($posts, 200);
         } catch (Throwable $exception) {
             return response()->json($exception->getMessage());
