@@ -110,27 +110,27 @@ class EmploymentCredentialController extends Controller
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
      */
-    public function UpdateEmployment(Request $req, $id){
+    public function UpdateEmployment(Request $req, $user_id){
         $validator = Validator::make($req->all(), [
             'position' => 'nullable|string|max:50',
             'company' => 'nullable|string',
             'start_year' => 'nullable|integer',
             'end_year' => 'nullable|integer',
         ]);
-        $validator = $validator->validated();
+        $employmentcredential = Employmentcredential::where('user_id', $user_id);
+        $employmentcredential->update([
 
-        $employmentcredential = Employmentcredential::find($id);
-        $employmentcredential->position = $validator['position'];
-        $employmentcredential->company = $validator['company'];
-        $employmentcredential->start_year = $validator['start_year'];
-        $employmentcredential->end_year = $validator['end_year'];
-        $employmentcredential->update();
+            'position' => $req->position,
+            'company' => $req->company,
+            'start_year' => $req->start_year,
+            'end_year' => $req->end_year
+        ]);
+
         $response = [
             'message' => 'Update Successful'
         ];
         return response()->json($response, 200);
     }
-
  /**
      * @OA\Get(
      *      path= "api/credential/employment/{user_id}",

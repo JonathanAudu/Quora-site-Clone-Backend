@@ -105,7 +105,7 @@ class LocationCredentialController extends Controller
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
      */
-    public function UpdateLocation(Request $req, $id)
+    public function UpdateLocation(Request $req, $user_id)
     {
         $validator = Validator::make($req->all(), [
             'location' => 'Required|string|',
@@ -119,18 +119,17 @@ class LocationCredentialController extends Controller
                 'errors' => $validator->errors(),
             ], 400);
         }
-        $validator = $validator->validated();
-
-        $locationcredential = Locationcredential::find($id);
-        $locationcredential->location = $validator['location'];
-        $locationcredential->start_year = $validator['start_year'];
-        $locationcredential->end_year = $validator['end_year'];
-        $locationcredential->update();
-        $response = [
-            'message' => 'Update Successful'
-        ];
-        return response()->json($response, 200);
-    }
+        $locationcredential = Locationcredential::where('user_id', $user_id);
+    $locationcredential->update([
+        'location' => $req->location,
+        'start_year' => $req->start_year,
+        'end_year' => $req->end_year
+    ]);
+    $response = [
+        'message' => 'Update Successful'
+    ];
+    return response()->json($response, 200);
+   }
 
     /**
      * @OA\Get(

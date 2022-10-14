@@ -92,14 +92,43 @@ class PostController extends Controller
      *      ),
      *      @OA\Response(
      *          response=403,
-     *          description="Unable to post"
+     *          description="Unable to  get post"
      *      )
      *     )
      */
     public function getAllPosts()
     {
         try {
-            $posts = Post::all()->with();
+            $posts = Post::all();
+            return response()->json($posts, 200);
+        } catch (Throwable $exception) {
+            return response()->json($exception->getMessage());
+        }
+    }
+/**
+     * @OA\Get(
+     *      path="/api/user/posts/{$user_id}",
+     *      tags={"Post"},
+     *      summary="Get all Posts for a particular user",
+     *      description="Get all Posts for a particular user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful",
+     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Unable to get post"
+     *      )
+     *     )
+     */
+    public function getUserPosts($user_id){
+        try {
+            $posts = Post::where('user_id', $user_id)->with('getcomment', 'getLikePost')->get();
             return response()->json($posts, 200);
         } catch (Throwable $exception) {
             return response()->json($exception->getMessage());

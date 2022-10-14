@@ -1,0 +1,361 @@
+[
+  {
+    "_id": "7a490eb6-f92e-4f7f-898b-c10d19ec748c",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "REGISTER",
+    "url": "http://127.0.0.1:8000/api/auth/register",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-10-14T08:01:52.803Z",
+    "modified": "2022-10-14T08:03:07.324Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"name\": \"Jojo\",\r\n  \"email\": \"jo@gmail.com\"\r\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5cbeac07-b7aa-4f19-b659-3f84a3ca59e5",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "VERIFY",
+    "url": "http://127.0.0.1:8000/api/auth/verify",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-10-14T08:05:46.771Z",
+    "modified": "2022-10-14T08:06:46.223Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"id\": 5,\r\n  \"otp\": 895506\r\n\r\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|Q13EkI80tyJGlIpwrj7Wglge9iSmyPEdmlGaoXdC"
+    },
+    "tests": []
+  },
+  {
+    "_id": "997916d3-a617-4a20-9019-ee5efa7c8034",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "PASSWORD",
+    "url": "http://127.0.0.1:8000/api/auth/password",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-10-14T08:06:57.814Z",
+    "modified": "2022-10-14T08:08:05.381Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"password\": \"12345\",\r\n  \"id\": 5\r\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|Q13EkI80tyJGlIpwrj7Wglge9iSmyPEdmlGaoXdC"
+    },
+    "tests": []
+  },
+  {
+    "_id": "6baf2bfb-f630-4bf7-bb33-73f3a3356081",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "LOGIN",
+    "url": "http://127.0.0.1:8000/api/auth/login",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-10-14T09:24:21.967Z",
+    "modified": "2022-10-14T09:26:13.578Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"email\": \"jo@gmail.com\",\r\n  \"password\": \"12345\"\r\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "449f2ec9-0d93-40ff-a446-b091be6ac349",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "UPDATE PROFILE",
+    "url": "http://127.0.0.1:8000/api/user/update-profile",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2022-10-14T09:27:05.111Z",
+    "modified": "2022-10-14T09:32:12.494Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "name",
+          "value": "Jonathan Joestar"
+        },
+        {
+          "name": "profile_credential",
+          "value": "Eyes of Heaven"
+        },
+        {
+          "name": "profile_desc",
+          "value": "JOJO BIZZARE ADVENTURES"
+        }
+      ],
+      "files": [
+        {
+          "name": "profile_photo",
+          "value": "..\\..\\..\\..\\Users\\INTERN 2\\Downloads\\i8DlJPnd_400x400.jpg"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "7|aDzS11Y6Sdn3PVRiGZ2gl3tbcyMP47xe4uuZzimp"
+    },
+    "tests": []
+  },
+  {
+    "_id": "9ba615d9-e880-43db-babf-feaae3713d91",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "POSTS",
+    "url": "http://127.0.0.1:8000/api/user/create-post",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-10-14T09:33:09.855Z",
+    "modified": "2022-10-14T09:54:42.653Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"title\": \"Monkey D. Luffy | One Piece Wiki - Fandom\",\r\n  \"body\": \"Monkey D. Luffy, also known as 'Straw Hat Luffy' and commonly as 'Straw Hat',[11] is the main protagonist of the manga and anime, One Piece. He is the founder and captain of the increasingly infamous and powerful Straw Hat Pirates, as well as one of its top fighters.[27] He desires to find the legendary treasure left behind by the late Gol D. Roger and thereby become the Pirate King,[28] which would help facilitate an unknown dream of his that he has told only to his brothers and crew.[29][30] He believes that being the Pirate King means having the most freedom in the world.[31]\"\r\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "7|aDzS11Y6Sdn3PVRiGZ2gl3tbcyMP47xe4uuZzimp"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b0ce3366-e2b6-45d1-881e-04b76ec16926",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "GET ALL POSTS",
+    "url": "http://127.0.0.1:8000/api/user/allposts",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2022-10-14T09:55:02.103Z",
+    "modified": "2022-10-14T11:07:51.150Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "77559622-43cc-4700-99af-f661a7b0111b",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "GET USER POST",
+    "url": "http://127.0.0.1:8000/api/user/allposts/5",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2022-10-14T11:07:57.957Z",
+    "modified": "2022-10-14T12:06:00.780Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "f5fe2ac1-8831-470c-85d7-96935f1b1d92",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "COMMENTs",
+    "url": "http://127.0.0.1:8000/api/user/add-comment",
+    "method": "POST",
+    "sortNum": 100000,
+    "created": "2022-10-14T11:38:12.450Z",
+    "modified": "2022-10-14T11:41:20.339Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"post_id\": 5,\r\n  \"user_id\": 4,\r\n  \"body\": \"Mumu man\"\r\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "f36a9001-1b13-4189-b2a8-1e5aaff0d3f3",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "POSTVOTE",
+    "url": "http://127.0.0.1:8000/api/post/upvotes",
+    "method": "POST",
+    "sortNum": 110000,
+    "created": "2022-10-14T12:01:46.623Z",
+    "modified": "2022-10-14T14:10:58.137Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"user_id\": 4,\r\n  \"post_id\": 5\r\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "34625c1c-97b4-46ab-a825-1ae84f092c0b",
+    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "containerId": "",
+    "name": "POSTVOTE COUNT",
+    "url": "http://127.0.0.1:8000/api/post/votes/4",
+    "method": "GET",
+    "sortNum": 120000,
+    "created": "2022-10-14T14:18:47.500Z",
+    "modified": "2022-10-14T14:20:41.525Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+    },
+    "tests": []
+  }
+]

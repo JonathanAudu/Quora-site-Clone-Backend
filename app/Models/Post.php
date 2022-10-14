@@ -16,10 +16,10 @@ class Post extends Model
     }
     public function getcomment()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, "post_id", "id" );
     }
     public function getLikePost()
     {
-        return $this->hasMany(Likepost::class);
+        return $this->hasMany(Likepost::class, "post_id", "id");
     }
 }

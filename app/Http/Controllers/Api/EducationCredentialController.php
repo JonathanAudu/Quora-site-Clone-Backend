@@ -113,7 +113,7 @@ class EducationCredentialController extends Controller
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
      */
-    public function UpdateEducation(Request $req, $id){
+    public function UpdateEducation(Request $req, $user_id){
         $validator = Validator::make($req->all(), [
             'school' => 'nullable|string',
             'primary_major' => 'nullable|string',
@@ -128,22 +128,19 @@ class EducationCredentialController extends Controller
                 'errors' => $validator->errors(),
             ], 400);
         }
-        $validator = $validator->validated();
-
-        $educationcredential = Educationcredential::find($id);
-        $educationcredential->school = $validator['school'];
-        $educationcredential->primary_major = $validator['primary_major'];
-        $educationcredential->secondary_major = $validator['secondary_major'];
-        $educationcredential->degree_type = $validator['degree_type'];
-        $educationcredential->graduation_year = $validator['graduation_year'];
-        $educationcredential->update();
+        $educationcredential = Educationcredential::where('user_id', $user_id);
+        $educationcredential->update([
+            'school' => $req->school,
+            'primary_major' => $req->primary_major,
+            'secondary_major' => $req->secondary_major,
+            'degree_type' => $req->degree_type,
+            'graduation_year' => $req->graduation_year
+        ]);
         $response = [
             'message' => 'Update Successful'
         ];
         return response()->json($response, 200);
     }
-
-
 
      /**
      * @OA\Get(

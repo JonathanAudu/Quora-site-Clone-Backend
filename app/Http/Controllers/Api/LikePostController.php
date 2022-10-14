@@ -46,29 +46,63 @@ class LikePostController extends Controller
     public function PostsLike(Request $req)
     {
 
-        $status = Likepost::where('user_id', '=', $req->user_id)
-            ->where('post_id', '=', $req->post_id);
-        if (!$status) {
+        $status = Likepost::where('user_id', $req->user_id)
+            ->where('post_id', $req->post_id)->get();
+
+        if ( $status->isEmpty())  {
+
             $addlikepost = new Likepost;
             $addlikepost->user_id = $req->user_id;
             $addlikepost->post_id = $req->post_id;
             $addlikepost->like = 1;
+            $addlikepost->dislike = 0;
 
-           $addlikepost->save();
-        } elseif ($status && ($status->dislike == 1)) {
+            $addlikepost->save();
 
-            $status->update([
-                'dislike' => 0,
-                'like' => 1
-            ]);
             $response = [
                 'message' => 'You like this post'
             ];
 
-            return response()->json($response, 200);
-        }
-    }
 
+
+        }
+        elseif($status) {
+
+            $status = Likepost::where('user_id', $req->user_id)
+                ->where('post_id', $req->post_id)
+                ->where('like', 1)
+                ->first();
+            $response = [
+                'message' => 'You already liked this post'
+            ];
+
+
+
+        return response()->json($response, 200);
+    }
+        elseif ( $status ) {
+
+            $status = Likepost::where('user_id', $req->user_id)
+                ->where('post_id', $req->post_id)
+                ->where('dislike', 1)
+                ->first();
+
+
+                $status->like = 1;
+                $status->dislike = 0;
+
+                $status->save();
+
+
+
+            $response = [
+                'message' => 'disliked before, now liked'
+            ];
+
+        }
+
+
+    }
 
       /**
         * @OA\Post(

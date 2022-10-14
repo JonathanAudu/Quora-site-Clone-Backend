@@ -66,6 +66,7 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
  //Post Routes
  Route::post('user/create-post', [PostController::class, 'createPost'])->middleware('auth:sanctum');
  Route::get('user/allposts', [PostController::class, 'getAllPosts']);
+ Route::get('user/allposts/{user_id}', [PostController::class, 'getUserPosts']);
 
  //Question Route
  Route::post('user/question', [QuestionController::class, 'AskQuestion'])->middleware('auth:sanctum');
