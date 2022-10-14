@@ -176,7 +176,7 @@ class EducationCredentialController extends Controller
 
      /**
         * @OA\Delete(
-        * path="/api/deleteEducation/{id}",
+        * path="/delete/Education/{id}",
         * tags={"Delete"},
         * summary="Delete data by id",
         * description="Delete data by id",
@@ -198,7 +198,7 @@ class EducationCredentialController extends Controller
         *      @OA\Response(response=404, description="Resource Not Found"),
         * )
         */
-    public function destroy($id)
+    public function destroyEducation($id)
     {
         $Credentials = Educationcredential::find($id);
         $Credentials -> delete();

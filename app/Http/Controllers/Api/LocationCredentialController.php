@@ -165,7 +165,7 @@ class LocationCredentialController extends Controller
 
      /**
         * @OA\Delete(
-        * path="/api/deleteLocation/{id}",
+        * path="/delete/location/{id}",
         * tags={"Delete"},
         * summary="Delete data by id",
         * description="Delete data by id",
@@ -187,7 +187,7 @@ class LocationCredentialController extends Controller
         *      @OA\Response(response=404, description="Resource Not Found"),
         * )
         */
-        public function destroy($id)
+        public function destroyLocation($id)
         {
             $Credentials = Locationcredential::find($id);
             $Credentials -> delete();
