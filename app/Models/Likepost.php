@@ -9,12 +9,12 @@ class Likepost extends Model
 {
     use HasFactory;
 
-    public function getpost()
+    public function post()
     {
         return $this->belongsTo(Post::class);
     }
 
-    public function getuser()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

@@ -126,9 +126,9 @@ class PostController extends Controller
      *      )
      *     )
      */
-    public function getUserPosts($user_id){
+    public function userPosts($user_id){
         try {
-            $posts = Post::where('user_id', $user_id)->with('getcomment', 'getLikePost')->get();
+            $posts = Post::where('user_id', $user_id)->with('comment', 'likepost')->get();
             return response()->json($posts, 200);
         } catch (Throwable $exception) {
             return response()->json($exception->getMessage());

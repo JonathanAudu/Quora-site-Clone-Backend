@@ -10,15 +10,15 @@ class Post extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function getuser()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function getcomment()
+    public function comment()
     {
         return $this->hasMany(Comment::class, "post_id", "id" );
     }
-    public function getLikePost()
+    public function likepost()
     {
         return $this->hasMany(Likepost::class, "post_id", "id");
     }

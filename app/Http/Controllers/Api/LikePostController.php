@@ -183,8 +183,8 @@ class LikePostController extends Controller
      *     )
      */
     public function getLikeCount(Request $Req){
-        $status = Likepost::where('post_id', '=', $Req->post_id)->get();
-        $likeCount = Count($status);
+        $likes = Likepost::where('post_id', '=', $Req->post_id)->get();
+        $likeCount = Count($likes);
         return $likeCount;
     }
 }
