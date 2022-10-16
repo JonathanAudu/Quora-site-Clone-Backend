@@ -318,7 +318,7 @@
                     "Password Reset"
                 ],
                 "summary": "user clicks reset link in mail box",
-                "description": "Returns a reset form and comes with $token which contains the reset token. This token\n     *                   should be placed in a hidden form input with value set to the said token",
+                "description": "Returns a reset form and comes with $token which contains the reset token. This token\r\n     *                   should be placed in a hidden form input with value set to the said token",
                 "operationId": "8b81625bcdc3eb2256df93ec9ee83d80",
                 "responses": {
                     "401": {
@@ -479,7 +479,7 @@
         "api/user/comments/{post_id}": {
             "get": {
                 "tags": [
-                    "Commment"
+                    "Comment"
                 ],
                 "summary": "Get comments from post",
                 "description": "Get comments from post",
@@ -666,14 +666,14 @@
                 }
             }
         },
-        "/api/deleteEducation/{id}": {
+        "/delete/Education/{id}": {
             "delete": {
                 "tags": [
                     "Delete"
                 ],
                 "summary": "Delete data by id",
                 "description": "Delete data by id",
-                "operationId": "827b2bc0ad5fc8ef2485b35d45199740",
+                "operationId": "3a195cc91f90ed8034e0f30ea768fe73",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -858,14 +858,14 @@
                 }
             }
         },
-        "/api/deleteEmployment/{id}": {
+        "/delete/Employment/{id}": {
             "delete": {
                 "tags": [
                     "Delete"
                 ],
                 "summary": "Delete data by id",
                 "description": "Delete data by id",
-                "operationId": "a394e193bb482807528773d70defec8a",
+                "operationId": "89f4f6e18fb677291f93f689edd0bde1",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1287,14 +1287,14 @@
                 }
             }
         },
-        "/api/deleteLocation/{id}": {
+        "/delete/location/{id}": {
             "delete": {
                 "tags": [
                     "Delete"
                 ],
                 "summary": "Delete data by id",
                 "description": "Delete data by id",
-                "operationId": "c69e0d5c00b55789045ac8fcc09ab294",
+                "operationId": "56c4f7fcdf42bf6e1c5412564d640582",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1412,7 +1412,7 @@
                 ],
                 "summary": "Get all Posts for a particular user",
                 "description": "Get all Posts for a particular user",
-                "operationId": "3bc74117c733e00eb77bbefeb829e192",
+                "operationId": "a467215d2fe7da04dd821848c96cb256",
                 "responses": {
                     "200": {
                         "description": "Successful",
