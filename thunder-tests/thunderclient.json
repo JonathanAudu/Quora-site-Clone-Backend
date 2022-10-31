@@ -4,11 +4,11 @@
     "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
     "containerId": "",
     "name": "REGISTER",
-    "url": "http://127.0.0.1:8000/api/auth/register",
+    "url": "http://127.0.0.1:8000/api/auth/password",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-10-14T08:01:52.803Z",
-    "modified": "2022-10-14T08:03:07.324Z",
+    "modified": "2022-10-31T12:07:41.169Z",
     "headers": [
       {
         "name": "Accept",
@@ -23,9 +23,27 @@
     ],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\r\n  \"name\": \"Jojo\",\r\n  \"email\": \"jo@gmail.com\"\r\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "id",
+          "value": "9"
+        },
+        {
+          "name": "otp",
+          "value": "220103",
+          "isDisabled": true
+        },
+        {
+          "name": "password",
+          "value": "12345"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "20|mstssQejhDF3hetx80QrVSvoKBgBoht2BvUzyv42"
     },
     "tests": []
   },
@@ -95,7 +113,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-10-14T09:24:21.967Z",
-    "modified": "2022-10-14T09:26:13.578Z",
+    "modified": "2022-10-31T11:57:54.110Z",
     "headers": [
       {
         "name": "Accept",
@@ -111,7 +129,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\r\n  \"email\": \"jo@gmail.com\",\r\n  \"password\": \"12345\"\r\n}",
+      "raw": "{\n  \"email\": \"jo@gmail.com\",\n  \"password\": \"12345\"\n}",
       "form": []
     },
     "tests": []
@@ -212,7 +230,7 @@
     "method": "GET",
     "sortNum": 90000,
     "created": "2022-10-14T09:55:02.103Z",
-    "modified": "2022-10-14T11:07:51.150Z",
+    "modified": "2022-10-31T12:12:16.198Z",
     "headers": [
       {
         "name": "Accept",
@@ -228,7 +246,7 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+      "bearer": "21|0EEIqkKVNJyCBAJMOlj7a44ra3yFaZD25wG6i533"
     },
     "tests": []
   },
@@ -237,11 +255,11 @@
     "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
     "containerId": "",
     "name": "GET USER POST",
-    "url": "http://127.0.0.1:8000/api/user/allposts/5",
+    "url": "http://127.0.0.1:8000/api/user/allposts/9",
     "method": "GET",
     "sortNum": 100000,
     "created": "2022-10-14T11:07:57.957Z",
-    "modified": "2022-10-14T12:06:00.780Z",
+    "modified": "2022-10-31T12:13:12.962Z",
     "headers": [
       {
         "name": "Accept",
@@ -257,7 +275,7 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+      "bearer": "21|0EEIqkKVNJyCBAJMOlj7a44ra3yFaZD25wG6i533"
     },
     "tests": []
   },

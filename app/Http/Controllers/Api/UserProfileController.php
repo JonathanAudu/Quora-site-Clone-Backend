@@ -119,4 +119,37 @@ class UserProfileController extends Controller
             return response()->json(['status'=>'false', 'message'=>$e->getMessage(), 'data'=>[]], 500);
         }
     }
+
+
+
+    /**
+     * @OA\Get(
+     *      path= api/user/all-users",
+     *      tags={"User"},
+     *      summary="Get all users",
+     *      description="Get all users",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful",
+     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function getAllUser(Request $req ){
+        try {
+
+            $user = User::all();
+            return response()->json(['data'=>$user]);
+        } catch (\Exception $e) {
+            return response()->json(['status'=>'false', 'message'=>$e->getMessage(), 'data'=>[]], 500);
+        }
+    }
 }

@@ -62,7 +62,7 @@ class CommentController extends Controller
           /**
      * @OA\Get(
      *      path="api/user/comments/{post_id}",
-     *      tags={"Commment"},
+     *      tags={"Comment"},
      *      summary="Get comments from post",
      *      description="Get comments from post",
      *      @OA\Response(
