@@ -318,7 +318,7 @@
                     "Password Reset"
                 ],
                 "summary": "user clicks reset link in mail box",
-                "description": "Returns a reset form and comes with $token which contains the reset token. This token\n     *                   should be placed in a hidden form input with value set to the said token",
+                "description": "Returns a reset form and comes with $token which contains the reset token. This token\r\n     *                   should be placed in a hidden form input with value set to the said token",
                 "operationId": "8b81625bcdc3eb2256df93ec9ee83d80",
                 "responses": {
                     "401": {
