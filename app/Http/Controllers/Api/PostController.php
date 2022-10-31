@@ -127,7 +127,7 @@ class PostController extends Controller
     }
     /**
      * @OA\Get(
-     *      path="/api/user/posts/{$user_id}",
+     *      path="/api/user/allposts/{user_id}",
      *      tags={"Post"},
      *      summary="Get all Posts for a particular user",
      *      description="Get all Posts for a particular user",
