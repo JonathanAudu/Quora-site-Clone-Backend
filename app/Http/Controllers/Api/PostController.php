@@ -7,10 +7,12 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
+
 
     /**
      * @OA\Post(
@@ -23,9 +25,10 @@ class PostController extends Controller
      *            mediaType="application/json",
      *            @OA\Schema(
      *               type="object",
-     *               required={"title", "body"},
+     *               required={"title", "body", "post_image"},
      *               @OA\Property(property="title", type="required|string"),
      *               @OA\Property(property="body", type="required|string")
+     *               @OA\Property(property="post_image", type="mimes:jpg,bmp,png|nullable")
      *            ),
      *        ),
      *    ),
@@ -48,6 +51,7 @@ class PostController extends Controller
         $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'body' => 'required|string',
+            'post_image' => 'mimes:jpg,bmp,png|nullable',
         ]);
 
         if ($validator->fails()) {
@@ -56,14 +60,29 @@ class PostController extends Controller
                 'status_code' => 500,
                 'errors' => $validator->errors(),
             ];
-
             return response()->json($response, 500);
+
+            $user = $req->user();
+
+            if ($req->hasFile('post_image')) {
+                if ($user->post_image) {
+                    $old_path = public_path() . '/uploads/post_images/' . $user->post_image;
+                    if (File::exists($old_path)) {
+                        File::delete($old_path);
+                    }
+                }
+                $image_name = 'post_image-' . time() . '.' . $req->post_image->extension();
+                $req->post_image->move(public_path('/uploads/post_images/'), $image_name);
+            } else {
+                $image_name = $user->post_image;
+            }
         } else {
             $validator = $validator->validated();
 
             $post = new Post;
             $post->title = $validator['title'];
             $post->body = $validator['body'];
+            $post->post_image = $validator['post_image'];
             $post->user_id = Auth::user()->id;
             $post->save();
             $response = [
@@ -73,6 +92,7 @@ class PostController extends Controller
             return response()->json($response, 200);
         }
     }
+
 
 
     /**
@@ -105,7 +125,7 @@ class PostController extends Controller
             return response()->json($exception->getMessage());
         }
     }
-/**
+    /**
      * @OA\Get(
      *      path="/api/user/posts/{$user_id}",
      *      tags={"Post"},
@@ -126,7 +146,8 @@ class PostController extends Controller
      *      )
      *     )
      */
-    public function userPosts($user_id){
+    public function userPosts($user_id)
+    {
         try {
             $posts = Post::where('user_id', $user_id)->with('comment', 'likepost')->get();
             return response()->json($posts, 200);
