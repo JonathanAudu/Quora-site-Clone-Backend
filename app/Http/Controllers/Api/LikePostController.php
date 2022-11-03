@@ -63,7 +63,7 @@ class LikePostController extends Controller
                 'message' => 'You like this post'
             ];
 
-
+            return response()->json($response, 200);
 
         }
         elseif($status) {
@@ -140,14 +140,22 @@ class LikePostController extends Controller
     public function PostsDislike(Request $Req){
         $status = Likepost::where('user_id', '=', $Req->user_id)
             ->where('post_id', '=', $Req->post_id);
-        if(!$status){
+        if($status->isEmpty()){
             $adddislikepost = new Likepost;
             $adddislikepost->user_id = $Req->user_id;
             $adddislikepost->post_id = $Req->post_id;
             $adddislikepost->dislike = 1;
+            $adddislikepost->like = 0;
 
            $adddislikepost->save();
-        } elseif ($status && ($status->like == 1)) {
+
+           $response = [
+               'message' => 'You dislike this post'
+           ];
+
+           return response()->json($response, 200);
+
+        } elseif ($status && $status->like == 1) {
 
             $status->update([
                 'dislike' => 1,

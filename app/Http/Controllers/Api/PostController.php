@@ -61,32 +61,18 @@ class PostController extends Controller
                 'errors' => $validator->errors(),
             ];
             return response()->json($response, 500);
-
-            $user = $req->user();
-
-            if ($req->hasFile('post_image')) {
-                if ($user->post_image) {
-                    $old_path = public_path() . '/uploads/post_images/' . $user->post_image;
-                    if (File::exists($old_path)) {
-                        File::delete($old_path);
-                    }
-                }
-                $image_name = 'post_image-' . time() . '.' . $req->post_image->extension();
-                $req->post_image->move(public_path('/uploads/post_images/'), $image_name);
-            } else {
-                $image_name = $user->post_image;
-            }
-        } else {
-            $validator = $validator->validated();
+        } elseif ($req->post_image) {
+            $file_name = 'post_img-' . time() . '.' . $req->post_image->extension();
+            $req->post_image->move(public_path('/uploads/post_images/'), $file_name);
 
             $post = new Post;
-            $post->title = $validator['title'];
-            $post->body = $validator['body'];
-            $post->post_image = $validator['post_image'];
+            $post->title = $req->title;
+            $post->body = $req->body;
+            $post->post_image = $file_name;
             $post->user_id = Auth::user()->id;
             $post->save();
             $response = [
-                'message' => 'Post Successful'
+                'message' => 'Successful'
             ];
 
             return response()->json($response, 200);

@@ -3,103 +3,12 @@
     "_id": "e829062d-c81b-4e60-b32b-08774e4f3374",
     "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
     "containerId": "",
-<<<<<<< HEAD
-    "name": "REGISTER",
-    "url": "http://127.0.0.1:8000/api/auth/password",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2022-10-14T08:01:52.803Z",
-    "modified": "2022-10-31T12:07:41.169Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "id",
-          "value": "9"
-        },
-        {
-          "name": "otp",
-          "value": "220103",
-          "isDisabled": true
-        },
-        {
-          "name": "password",
-          "value": "12345"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "20|mstssQejhDF3hetx80QrVSvoKBgBoht2BvUzyv42"
-    },
-    "tests": []
-  },
-  {
-    "_id": "5cbeac07-b7aa-4f19-b659-3f84a3ca59e5",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
-    "containerId": "",
-    "name": "VERIFY",
-    "url": "http://127.0.0.1:8000/api/auth/verify",
-    "method": "POST",
-    "sortNum": 20000,
-    "created": "2022-10-14T08:05:46.771Z",
-    "modified": "2022-10-14T08:06:46.223Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\r\n  \"id\": 5,\r\n  \"otp\": 895506\r\n\r\n}",
-      "form": []
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "6|Q13EkI80tyJGlIpwrj7Wglge9iSmyPEdmlGaoXdC"
-    },
-    "tests": []
-  },
-  {
-    "_id": "997916d3-a617-4a20-9019-ee5efa7c8034",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
-    "containerId": "",
-    "name": "PASSWORD",
-    "url": "http://127.0.0.1:8000/api/auth/password",
-    "method": "POST",
-    "sortNum": 30000,
-    "created": "2022-10-14T08:06:57.814Z",
-    "modified": "2022-10-14T08:08:05.381Z",
-=======
     "name": "register",
     "url": "http://127.0.0.1:8000/api/auth/register",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-10-16T17:57:42.822Z",
     "modified": "2022-10-16T17:59:32.328Z",
->>>>>>> 2e6016b09a3a43ebbff76836829f7b6134091471
     "headers": [],
     "params": [],
     "body": {
@@ -116,27 +25,6 @@
     "name": "verify",
     "url": "http://127.0.0.1:8000/api/auth/verify",
     "method": "POST",
-<<<<<<< HEAD
-    "sortNum": 40000,
-    "created": "2022-10-14T09:24:21.967Z",
-    "modified": "2022-10-31T11:57:54.110Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"email\": \"jo@gmail.com\",\n  \"password\": \"12345\"\n}",
-=======
     "sortNum": 30000,
     "created": "2022-10-16T18:01:54.205Z",
     "modified": "2022-10-16T18:03:04.480Z",
@@ -145,7 +33,6 @@
     "body": {
       "type": "json",
       "raw": "{\r\n  \"id\": 2,\r\n  \"otp\": 708672\r\n}",
->>>>>>> 2e6016b09a3a43ebbff76836829f7b6134091471
       "form": []
     },
     "tests": []
@@ -178,13 +65,68 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-10-16T18:05:01.422Z",
-    "modified": "2022-10-16T18:05:38.683Z",
-    "headers": [],
+    "modified": "2022-11-01T20:31:48.746Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "*/*",
+        "isDisabled": true
+      },
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\r\n  \"email\": \"jones@gmail.com\",\r\n  \"password\": \"12345\"\r\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "password",
+          "value": "12345"
+        },
+        {
+          "name": "email",
+          "value": "jones@gmail.com"
+        },
+        {
+          "name": "id",
+          "value": "",
+          "isDisabled": true
+        },
+        {
+          "name": "title",
+          "value": "",
+          "isDisabled": true
+        },
+        {
+          "name": "body",
+          "value": "",
+          "isDisabled": true
+        },
+        {
+          "name": "post_id",
+          "value": "3"
+        },
+        {
+          "name": "user_id",
+          "value": "2"
+        },
+        {
+          "name": "like",
+          "value": "1"
+        },
+        {
+          "name": "dislike",
+          "value": "0"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|mcE2A5U75genXsvEl9WPa97BTA7qblFRMeWadC9r"
     },
     "tests": []
   },
@@ -239,17 +181,32 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-10-16T18:13:58.568Z",
-    "modified": "2022-10-16T18:16:43.641Z",
+    "modified": "2022-11-03T09:57:20.171Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\r\n  \"title\": \"PHP Backend Language\",\r\n  \"body\": \"PHP is a programming language with Laravel as its framework and others \"\r\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "title",
+          "value": "Training Room 1"
+        },
+        {
+          "name": "body",
+          "value": "Trafalgar D. Law AKA The Surgeon Of Death"
+        }
+      ],
+      "files": [
+        {
+          "name": "post_image",
+          "value": "..\\..\\..\\..\\..\\Downloads\\Documents\\Web development\\images\\▷ Fond D'écran One Piece HD Et 4K À Télécharger Gratuit.jfif"
+        }
+      ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "4|MDl4J3QWkeZn9pOQdXw2HJymC0BIVK8HX5eysIk6"
+      "bearer": "8|hyYwUjrCu8kg2525M7otB8BAHa180b17IOgg7EGW"
     },
     "tests": []
   },
@@ -260,153 +217,6 @@
     "name": "GET user post",
     "url": "http://127.0.0.1:8000/api/user/allposts/1",
     "method": "GET",
-<<<<<<< HEAD
-    "sortNum": 90000,
-    "created": "2022-10-14T09:55:02.103Z",
-    "modified": "2022-10-31T12:12:16.198Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "21|0EEIqkKVNJyCBAJMOlj7a44ra3yFaZD25wG6i533"
-    },
-    "tests": []
-  },
-  {
-    "_id": "77559622-43cc-4700-99af-f661a7b0111b",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
-    "containerId": "",
-    "name": "GET USER POST",
-    "url": "http://127.0.0.1:8000/api/user/allposts/9",
-    "method": "GET",
-    "sortNum": 100000,
-    "created": "2022-10-14T11:07:57.957Z",
-    "modified": "2022-10-31T12:13:12.962Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "21|0EEIqkKVNJyCBAJMOlj7a44ra3yFaZD25wG6i533"
-    },
-    "tests": []
-  },
-  {
-    "_id": "f5fe2ac1-8831-470c-85d7-96935f1b1d92",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
-    "containerId": "",
-    "name": "COMMENTs",
-    "url": "http://127.0.0.1:8000/api/user/add-comment",
-    "method": "POST",
-    "sortNum": 100000,
-    "created": "2022-10-14T11:38:12.450Z",
-    "modified": "2022-10-14T11:41:20.339Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\r\n  \"post_id\": 5,\r\n  \"user_id\": 4,\r\n  \"body\": \"Mumu man\"\r\n}",
-      "form": []
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
-    },
-    "tests": []
-  },
-  {
-    "_id": "f36a9001-1b13-4189-b2a8-1e5aaff0d3f3",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
-    "containerId": "",
-    "name": "POSTVOTE",
-    "url": "http://127.0.0.1:8000/api/post/upvotes",
-    "method": "POST",
-    "sortNum": 110000,
-    "created": "2022-10-14T12:01:46.623Z",
-    "modified": "2022-10-14T14:10:58.137Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\r\n  \"user_id\": 4,\r\n  \"post_id\": 5\r\n}",
-      "form": []
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
-    },
-    "tests": []
-  },
-  {
-    "_id": "34625c1c-97b4-46ab-a825-1ae84f092c0b",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
-    "containerId": "",
-    "name": "POSTVOTE COUNT",
-    "url": "http://127.0.0.1:8000/api/post/votes/4",
-    "method": "GET",
-    "sortNum": 120000,
-    "created": "2022-10-14T14:18:47.500Z",
-    "modified": "2022-10-14T14:20:41.525Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
-=======
     "sortNum": 80000,
     "created": "2022-10-16T18:18:09.816Z",
     "modified": "2022-10-16T18:20:52.845Z",
@@ -415,7 +225,6 @@
     "auth": {
       "type": "bearer",
       "bearer": "4|MDl4J3QWkeZn9pOQdXw2HJymC0BIVK8HX5eysIk6"
->>>>>>> 2e6016b09a3a43ebbff76836829f7b6134091471
     },
     "tests": []
   }

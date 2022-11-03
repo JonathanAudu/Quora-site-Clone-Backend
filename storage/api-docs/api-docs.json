@@ -1353,14 +1353,14 @@
                 }
             }
         },
-        "/api/user/posts/{$user_id}": {
+        "/api/user/allposts/{user_id}": {
             "get": {
                 "tags": [
                     "Post"
                 ],
                 "summary": "Get all Posts for a particular user",
                 "description": "Get all Posts for a particular user",
-                "operationId": "a467215d2fe7da04dd821848c96cb256",
+                "operationId": "4f9fc15c6fa1b6c5e77cb1499ee90d2d",
                 "responses": {
                     "200": {
                         "description": "Successful",
@@ -1639,58 +1639,6 @@
                 "responses": {
                     "201": {
                         "description": "Added Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "validation fails",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "api/user/create-follower": {
-            "post": {
-                "tags": [
-                    "Follow User"
-                ],
-                "summary": "user follows a user",
-                "description": "user follows a user",
-                "operationId": "0ddf29321e631a5edef1a35fa644ddf1",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "user_id",
-                                    "followed_user_id"
-                                ],
-                                "properties": {
-                                    "user_id": {
-                                        "type": "integer"
-                                    },
-                                    "followed_user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "You followef this user",
                         "content": {
                             "application/json": {
                                 "schema": {}
