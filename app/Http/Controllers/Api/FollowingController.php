@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 namespace App\Http\Controllers\Api;
 
 use Throwable;
@@ -12,6 +13,16 @@ use Illuminate\Support\Facades\Auth;
 class FollowingController extends Controller
 {
     /**
+=======
+namespace App\Http\Controllers;
+
+use App\Models\Following;
+use Illuminate\Http\Request;
+
+class FollowingController extends Controller
+{
+      /**
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
      * @OA\Post(
      * path="api/user/create-follower",
      * tags={"Follow User"},
@@ -22,9 +33,15 @@ class FollowingController extends Controller
      *            mediaType="application/json",
      *            @OA\Schema(
      *               type="object",
+<<<<<<< HEAD
      *               required={"follower_id", "following_id"},
      *               @OA\Property(property="follower_id", type="integer"),
      *               @OA\Property(property="following_id", type="integer")
+=======
+     *               required={"user_id", "followed_user_id"},
+     *               @OA\Property(property="user_id", type="integer"),
+     *               @OA\Property(property="followed_user_id", type="integer")
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
      *            ),
      *        ),
      *    ),
@@ -42,6 +59,7 @@ class FollowingController extends Controller
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
      */
+<<<<<<< HEAD
     public function FollowUser(Request $req, $id)
     {
         $userId = Auth::user()->id;
@@ -112,4 +130,18 @@ class FollowingController extends Controller
 
 
     
+=======
+    public function FollowUser(Request $req){
+
+        $following = new Following;
+        $following->user_id = $req->user_id;
+        $following->followed_user_id = $req->followed_user_id;
+        $following->save();
+        $response = [
+            'message' => 'You followed this user'
+        ];
+
+        return response()->json($response, 200);
+    }
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
 }

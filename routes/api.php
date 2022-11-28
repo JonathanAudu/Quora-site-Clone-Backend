@@ -64,6 +64,10 @@ Route::post('auth/reset-password', [AuthController::class, 'resetPassword'])->mi
 
 //UserProfile Route
 Route::get('user/userProfile/{id}', [UserProfileController::class, 'getUserProfile'])->middleware('auth:sanctum');
+
+Route::get('user/all-users', [UserProfileController::class, 'getAllUser']);
+
+
 Route::post('user/update-profile', [UserProfileController::class, 'update_profile'])->middleware('auth:sanctum');
 
  // Comment Routes
@@ -80,7 +84,7 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
  //Post Routes
  Route::post('user/create-post', [PostController::class, 'createPost'])->middleware('auth:sanctum');
  Route::get('user/allposts', [PostController::class, 'getAllPosts']);
- Route::get('user/allposts/{user_id}', [PostController::class, 'getUserPosts']);
+ Route::get('user/allposts/{user_id}', [PostController::class, 'userPosts']);
 
  //Question Route
  Route::post('user/question', [QuestionController::class, 'AskQuestion'])->middleware('auth:sanctum');

@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+<<<<<<< HEAD
 use App\Notifications\PostNotifications;
+=======
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 
@@ -65,15 +68,29 @@ class PostController extends Controller
             ];
             return response()->json($response, 500);
         } elseif ($req->post_image) {
+<<<<<<< HEAD
             $image_name = 'post_image-' . time() . '.' . $req->post_image->extension();
             $req->post_image->move(public_path('/uploads/post_images/'), $image_name);
+=======
+            $file_name = 'post_img-' . time() . '.' . $req->post_image->extension();
+            $req->post_image->move(public_path('/uploads/post_images/'), $file_name);
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
 
             $post = new Post;
             $post->title = $req->title;
             $post->body = $req->body;
+<<<<<<< HEAD
             $post->post_image = $image_name;
             $post->user_id = Auth::user()->id;
             $post->save();
+=======
+            $post->post_image = $file_name;
+            $post->user_id = Auth::user()->id;
+            $post->save();
+            $response = [
+                'message' => 'Successful'
+            ];
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
 
             $users = User::all();
             Notification::route('mail', $users)->notify(new PostNotifications($post));
@@ -85,8 +102,11 @@ class PostController extends Controller
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
     /**
      * @OA\Get(
      *      path="/api/user/allposts",
@@ -138,7 +158,11 @@ class PostController extends Controller
      *      )
      *     )
      */
+<<<<<<< HEAD
     public function  getuserPosts($user_id)
+=======
+    public function userPosts($user_id)
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
     {
         try {
             $posts = Post::where('user_id', $user_id)->with('comment', 'likepost')->get();

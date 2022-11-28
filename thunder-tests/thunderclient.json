@@ -1,8 +1,9 @@
 [
   {
-    "_id": "7a490eb6-f92e-4f7f-898b-c10d19ec748c",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "_id": "e829062d-c81b-4e60-b32b-08774e4f3374",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
     "containerId": "",
+<<<<<<< HEAD
     "name": "REGISTER",
     "url": "http://127.0.0.1:8000/api/auth/password",
     "method": "POST",
@@ -91,23 +92,28 @@
     "sortNum": 30000,
     "created": "2022-10-14T08:06:57.814Z",
     "modified": "2022-10-14T08:08:05.381Z",
+=======
+    "name": "register",
+    "url": "http://127.0.0.1:8000/api/auth/register",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-10-16T17:57:42.822Z",
+    "modified": "2022-10-16T17:59:32.328Z",
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\r\n  \"password\": \"12345\",\r\n  \"id\": 5\r\n}",
+      "raw": "{\r\n  \"name\": \"jones\",\r\n  \"email\": \"jones@gmail.com\"\r\n}",
       "form": []
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "6|Q13EkI80tyJGlIpwrj7Wglge9iSmyPEdmlGaoXdC"
     },
     "tests": []
   },
   {
-    "_id": "6baf2bfb-f630-4bf7-bb33-73f3a3356081",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "_id": "bf0f04e1-8162-40c6-ad16-780504a1329f",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
     "containerId": "",
+<<<<<<< HEAD
     "name": "LOGIN",
     "url": "http://10.0.0.229/Interns/JonLee/QuoraBlog/public/api/user/create-follower",
     "method": "POST",
@@ -154,19 +160,52 @@
     "auth": {
       "type": "bearer",
       "bearer": "68|4WSCaO10eepwdcSZGVM5w96yiVWquumdQPpAKxhk"
+=======
+    "name": "verify",
+    "url": "http://127.0.0.1:8000/api/auth/verify",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-10-16T18:01:54.205Z",
+    "modified": "2022-10-16T18:03:04.480Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"id\": 2,\r\n  \"otp\": 708672\r\n}",
+      "form": []
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
     },
     "tests": []
   },
   {
-    "_id": "449f2ec9-0d93-40ff-a446-b091be6ac349",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "_id": "b01391bd-5130-40db-8cf6-f9720ecf646d",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
     "containerId": "",
-    "name": "UPDATE PROFILE",
-    "url": "http://127.0.0.1:8000/api/user/update-profile",
+    "name": "password",
+    "url": "http://127.0.0.1:8000/api/auth/password",
     "method": "POST",
-    "sortNum": 60000,
-    "created": "2022-10-14T09:27:05.111Z",
-    "modified": "2022-10-14T09:32:12.494Z",
+    "sortNum": 40000,
+    "created": "2022-10-16T18:03:17.463Z",
+    "modified": "2022-10-16T18:04:18.880Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"password\": \"12345\",\r\n  \"id\": 2\r\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8401a3d8-cc9c-49f0-924b-98517b860da9",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
+    "containerId": "",
+    "name": "login",
+    "url": "http://127.0.0.1:8000/api/auth/login",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-10-16T18:05:01.422Z",
+    "modified": "2022-11-01T20:31:48.746Z",
     "headers": [
       {
         "name": "Accept",
@@ -185,69 +224,137 @@
       "raw": "",
       "form": [
         {
-          "name": "name",
-          "value": "Jonathan Joestar"
+          "name": "password",
+          "value": "12345"
         },
         {
-          "name": "profile_credential",
-          "value": "Eyes of Heaven"
+          "name": "email",
+          "value": "jones@gmail.com"
         },
         {
-          "name": "profile_desc",
-          "value": "JOJO BIZZARE ADVENTURES"
-        }
-      ],
-      "files": [
+          "name": "id",
+          "value": "",
+          "isDisabled": true
+        },
         {
-          "name": "profile_photo",
-          "value": "..\\..\\..\\..\\Users\\INTERN 2\\Downloads\\i8DlJPnd_400x400.jpg"
+          "name": "title",
+          "value": "",
+          "isDisabled": true
+        },
+        {
+          "name": "body",
+          "value": "",
+          "isDisabled": true
+        },
+        {
+          "name": "post_id",
+          "value": "3"
+        },
+        {
+          "name": "user_id",
+          "value": "2"
+        },
+        {
+          "name": "like",
+          "value": "1"
+        },
+        {
+          "name": "dislike",
+          "value": "0"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "7|aDzS11Y6Sdn3PVRiGZ2gl3tbcyMP47xe4uuZzimp"
+      "bearer": "6|mcE2A5U75genXsvEl9WPa97BTA7qblFRMeWadC9r"
     },
     "tests": []
   },
   {
-    "_id": "9ba615d9-e880-43db-babf-feaae3713d91",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "_id": "f6f04eeb-cec4-4a45-9ac0-54b4ba489027",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
     "containerId": "",
-    "name": "POSTS",
-    "url": "http://127.0.0.1:8000/api/user/create-post",
+    "name": "profile update",
+    "url": "http://127.0.0.1:8000/api/user/update-profile",
     "method": "POST",
-    "sortNum": 70000,
-    "created": "2022-10-14T09:33:09.855Z",
-    "modified": "2022-10-14T09:54:42.653Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
+    "sortNum": 60000,
+    "created": "2022-10-16T18:07:03.841Z",
+    "modified": "2022-10-16T18:12:53.359Z",
+    "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\r\n  \"title\": \"Monkey D. Luffy | One Piece Wiki - Fandom\",\r\n  \"body\": \"Monkey D. Luffy, also known as 'Straw Hat Luffy' and commonly as 'Straw Hat',[11] is the main protagonist of the manga and anime, One Piece. He is the founder and captain of the increasingly infamous and powerful Straw Hat Pirates, as well as one of its top fighters.[27] He desires to find the legendary treasure left behind by the late Gol D. Roger and thereby become the Pirate King,[28] which would help facilitate an unknown dream of his that he has told only to his brothers and crew.[29][30] He believes that being the Pirate King means having the most freedom in the world.[31]\"\r\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "name",
+          "value": "World Jones"
+        },
+        {
+          "name": "profile_credential",
+          "value": "Laravel Expert"
+        },
+        {
+          "name": "profile_desc",
+          "value": "Basic and Advance knowledge of PHP and Laravel"
+        }
+      ],
+      "files": [
+        {
+          "name": "profile_photo",
+          "value": "..\\..\\..\\..\\..\\Downloads\\Documents\\Web development\\images\\jon lee.jfif"
+        }
+      ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "7|aDzS11Y6Sdn3PVRiGZ2gl3tbcyMP47xe4uuZzimp"
+      "bearer": "4|MDl4J3QWkeZn9pOQdXw2HJymC0BIVK8HX5eysIk6"
     },
     "tests": []
   },
   {
-    "_id": "b0ce3366-e2b6-45d1-881e-04b76ec16926",
-    "colId": "745f2b92-83cc-418c-8c70-e92799f63dcc",
+    "_id": "01db0e57-e6ca-4f37-8078-233842f17f7e",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
     "containerId": "",
+    "name": "post",
+    "url": "http://127.0.0.1:8000/api/user/create-post",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-10-16T18:13:58.568Z",
+    "modified": "2022-11-03T09:57:20.171Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "title",
+          "value": "Training Room 1"
+        },
+        {
+          "name": "body",
+          "value": "Trafalgar D. Law AKA The Surgeon Of Death"
+        }
+      ],
+      "files": [
+        {
+          "name": "post_image",
+          "value": "..\\..\\..\\..\\..\\Downloads\\Documents\\Web development\\images\\▷ Fond D'écran One Piece HD Et 4K À Télécharger Gratuit.jfif"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|hyYwUjrCu8kg2525M7otB8BAHa180b17IOgg7EGW"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ffe50318-eefd-4243-a557-04e7032cb311",
+    "colId": "6f552a0a-8e4f-46fd-9c11-6cc189c0dd3c",
+    "containerId": "",
+<<<<<<< HEAD
     "name": "GET ALL POSTS",
     "url": "http://10.0.0.229/Interns/JonLee/QuoraBlog/public/api/user/create-post",
     "method": "POST",
@@ -266,6 +373,15 @@
         "isDisabled": true
       }
     ],
+=======
+    "name": "GET user post",
+    "url": "http://127.0.0.1:8000/api/user/allposts/1",
+    "method": "GET",
+    "sortNum": 80000,
+    "created": "2022-10-16T18:18:09.816Z",
+    "modified": "2022-10-16T18:20:52.845Z",
+    "headers": [],
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
     "params": [],
     "body": {
       "type": "formdata",
@@ -299,6 +415,7 @@
     },
     "auth": {
       "type": "bearer",
+<<<<<<< HEAD
       "bearer": "24|YgEP42oJGNZ57xoJtJHFNQalkU6JBMqTSqoA5jHf"
     },
     "tests": []
@@ -426,6 +543,9 @@
     "auth": {
       "type": "bearer",
       "bearer": "8|lmndVIDGrxscHYdiWcY4JtYjBGBJlrgQtBY5aYIj"
+=======
+      "bearer": "4|MDl4J3QWkeZn9pOQdXw2HJymC0BIVK8HX5eysIk6"
+>>>>>>> 582ccf80486e21b1156d353b758cefc4b44100aa
     },
     "tests": []
   }
