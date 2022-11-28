@@ -138,12 +138,14 @@ class LikePostController extends Controller
         * )
         */
     public function PostsDislike(Request $Req){
-        $status = Likepost::where('user_id', '=', $Req->user_id)
-            ->where('post_id', '=', $Req->post_id);
+        $status = Likepost::where('user_id', '=', $Req->user_id);
+            // ->where('post_id', '=', $Req->post_id);
+        return $status;
         if(!$status){
             $adddislikepost = new Likepost;
             $adddislikepost->user_id = $Req->user_id;
             $adddislikepost->post_id = $Req->post_id;
+            $adddislikepost->like = 0;
             $adddislikepost->dislike = 1;
 
            $adddislikepost->save();

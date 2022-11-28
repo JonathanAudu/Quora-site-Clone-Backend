@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use Throwable;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use App\Notifications\PostNotifications;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
+
 
     /**
      * @OA\Post(
@@ -23,9 +28,10 @@ class PostController extends Controller
      *            mediaType="application/json",
      *            @OA\Schema(
      *               type="object",
-     *               required={"title", "body"},
+     *               required={"title", "body", "post_image"},
      *               @OA\Property(property="title", type="required|string"),
      *               @OA\Property(property="body", type="required|string")
+     *               @OA\Property(property="post_image", type="mimes:jpg,bmp,png|nullable")
      *            ),
      *        ),
      *    ),
@@ -46,8 +52,9 @@ class PostController extends Controller
     public function createPost(Request $req)
     {
         $validator = Validator::make($req->all(), [
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:25',
             'body' => 'required|string',
+            'post_image' => 'mimes:jpg,bmp,png|nullable',
         ]);
 
         if ($validator->fails()) {
@@ -56,23 +63,28 @@ class PostController extends Controller
                 'status_code' => 500,
                 'errors' => $validator->errors(),
             ];
-
             return response()->json($response, 500);
-        } else {
-            $validator = $validator->validated();
+        } elseif ($req->post_image) {
+            $image_name = 'post_image-' . time() . '.' . $req->post_image->extension();
+            $req->post_image->move(public_path('/uploads/post_images/'), $image_name);
 
             $post = new Post;
-            $post->title = $validator['title'];
-            $post->body = $validator['body'];
+            $post->title = $req->title;
+            $post->body = $req->body;
+            $post->post_image = $image_name;
             $post->user_id = Auth::user()->id;
             $post->save();
-            $response = [
-                'message' => 'Post Successful'
-            ];
 
-            return response()->json($response, 200);
+            $users = User::all();
+            Notification::route('mail', $users)->notify(new PostNotifications($post));
+
+
+            return response()->json($post, 200);
         }
     }
+
+
+
 
 
     /**
@@ -99,15 +111,15 @@ class PostController extends Controller
     public function getAllPosts()
     {
         try {
-            $posts = Post::all();
+            $posts = Post::latest('created_at')->get();
             return response()->json($posts, 200);
         } catch (Throwable $exception) {
             return response()->json($exception->getMessage());
         }
     }
-/**
+    /**
      * @OA\Get(
-     *      path="/api/user/posts/{$user_id}",
+     *      path="/api/user/allposts/{user_id}",
      *      tags={"Post"},
      *      summary="Get all Posts for a particular user",
      *      description="Get all Posts for a particular user",
@@ -126,12 +138,44 @@ class PostController extends Controller
      *      )
      *     )
      */
-    public function userPosts($user_id){
+    public function  getuserPosts($user_id)
+    {
         try {
             $posts = Post::where('user_id', $user_id)->with('comment', 'likepost')->get();
             return response()->json($posts, 200);
         } catch (Throwable $exception) {
             return response()->json($exception->getMessage());
         }
+    }
+
+
+  /**
+        * @OA\Delete(
+        * path="/delete/post/{id}",
+        * tags={"Delete"},
+        * summary="Delete post by id",
+        * description="Delete post by id",
+        *     @OA\RequestBody(
+        *         @OA\MediaType(
+        *            mediaType="application/json",
+        *            @OA\Schema(
+        *               type="integer",
+        *               required={"true"}
+        *            ),
+        *        ),
+        *    ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="ok",
+        *          @OA\JsonContent()
+        *       ),
+        *      @OA\Response(response=400, description="Bad request"),
+        *      @OA\Response(response=404, description="Resource Not Found"),
+        * )
+        */
+    public function destroyPost($id)
+    {
+        $posts = Post::where('id', $id)->firstorfail()->delete();
+        return response()->json($posts, 200);
     }
 }

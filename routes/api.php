@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SpaceController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\EducationCredentialController;
 use App\Http\Controllers\Api\EmploymentCredentialController;
+use App\Http\Controllers\Api\FollowingController;
 use App\Http\Controllers\Api\LikeCommentController;
 use App\Http\Controllers\Api\LikePostController;
 use App\Http\Controllers\Api\LocationCredentialController;
@@ -29,6 +30,17 @@ use App\Models\Educationcredential;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Google login
+Route::get('login/google', [AuthController::class, 'googleLogin']);
+Route::get('login/google/callback', [AuthController::class, 'googleLoginCallback']);
+
+// FaceBook login
+Route::get('login/facebook', [AuthController::class, 'facebookLogin']);
+Route::get('login/facebook/callback', [AuthController::class, 'facebookLoginCallback']);
+
+// Authorization
 Route::get('auth/get-user', [AuthController::class, 'userDetails'])->middleware('auth:sanctum');
 
 Route::post('auth/register', [AuthController::class, 'register']);
@@ -56,6 +68,8 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
 
  // Comment Routes
  Route::post('user/add-comment', [CommentController::class, 'postComment']);
+ Route::get('user/comments/{post_id}', [CommentController::class, 'GetComment'])->middleware('auth:sanctum');
+
 
  // space routes
  Route::post('user/create-space', [SpaceController::class, 'createSpace'])->middleware('auth:sanctum');
@@ -117,4 +131,8 @@ Route::post('user/update-profile', [UserProfileController::class, 'update_profil
  Route::get('comment/votes/{post_id}', [LikeCommentController::class, 'getLikeCount']);
 
 
+//  Following Route
 
+Route::post('user/create-follower', [FollowingController::class, 'FollowUser'])->middleware('auth:sanctum');
+
+Route::get('user/allfollowers/{following_id}', [FollowingController::class, 'getFollowers']);

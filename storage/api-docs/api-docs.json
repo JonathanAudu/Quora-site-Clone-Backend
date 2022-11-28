@@ -666,14 +666,14 @@
                 }
             }
         },
-        "/api/deleteEducation/{id}": {
+        "/delete/Education/{id}": {
             "delete": {
                 "tags": [
                     "Delete"
                 ],
                 "summary": "Delete data by id",
                 "description": "Delete data by id",
-                "operationId": "827b2bc0ad5fc8ef2485b35d45199740",
+                "operationId": "3a195cc91f90ed8034e0f30ea768fe73",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -858,14 +858,14 @@
                 }
             }
         },
-        "/api/deleteEmployment/{id}": {
+        "/delete/Employment/{id}": {
             "delete": {
                 "tags": [
                     "Delete"
                 ],
                 "summary": "Delete data by id",
                 "description": "Delete data by id",
-                "operationId": "a394e193bb482807528773d70defec8a",
+                "operationId": "89f4f6e18fb677291f93f689edd0bde1",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -892,6 +892,86 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "api/user/create-follower": {
+            "post": {
+                "tags": [
+                    "Follow User"
+                ],
+                "summary": "user follows a user",
+                "description": "user follows a user",
+                "operationId": "0724382b52ef8017871e62f9483756ce",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "follower_id",
+                                    "following_id"
+                                ],
+                                "properties": {
+                                    "follower_id": {
+                                        "type": "integer"
+                                    },
+                                    "following_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "You followef this user",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "validation fails",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/user/allfollowers/{$following_id}": {
+            "get": {
+                "tags": [
+                    "Follow User"
+                ],
+                "summary": "Get all followers for a particular user",
+                "description": "Get all followers for a particular user",
+                "operationId": "6d42ef0a0a1dd3beee33a394406a0a3f",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "No followers"
                     }
                 }
             }
@@ -1287,14 +1367,14 @@
                 }
             }
         },
-        "/api/deleteLocation/{id}": {
+        "/delete/location/{id}": {
             "delete": {
                 "tags": [
                     "Delete"
                 ],
                 "summary": "Delete data by id",
                 "description": "Delete data by id",
-                "operationId": "c69e0d5c00b55789045ac8fcc09ab294",
+                "operationId": "56c4f7fcdf42bf6e1c5412564d640582",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1318,58 +1398,6 @@
                     },
                     "400": {
                         "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "api/user/create-post": {
-            "post": {
-                "tags": [
-                    "Post"
-                ],
-                "summary": "user post feeds",
-                "description": "User post feeds",
-                "operationId": "4b062e0b81bcc015b325957d240fc535",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "title",
-                                    "body"
-                                ],
-                                "properties": {
-                                    "title": {
-                                        "type": "required|string"
-                                    },
-                                    "body": {
-                                        "type": "required|string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Post Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "validation fails",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
                     },
                     "404": {
                         "description": "Resource Not Found"
@@ -1405,14 +1433,14 @@
                 }
             }
         },
-        "/api/user/posts/{$user_id}": {
+        "/api/user/allposts/{user_id}": {
             "get": {
                 "tags": [
                     "Post"
                 ],
                 "summary": "Get all Posts for a particular user",
                 "description": "Get all Posts for a particular user",
-                "operationId": "3bc74117c733e00eb77bbefeb829e192",
+                "operationId": "08a945de56d8cfd3802b385dc15a63ef",
                 "responses": {
                     "200": {
                         "description": "Successful",
@@ -1429,6 +1457,44 @@
                     },
                     "403": {
                         "description": "Unable to get post"
+                    }
+                }
+            }
+        },
+        "/delete/post/{id}": {
+            "delete": {
+                "tags": [
+                    "Delete"
+                ],
+                "summary": "Delete post by id",
+                "description": "Delete post by id",
+                "operationId": "a3341cc6138a9a9bbabb82a95a692c44",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "true"
+                                ],
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     }
                 }
             }

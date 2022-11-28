@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'body', 'post_image'
+    ];
     protected $guarded = [];
 
     public function user()
@@ -16,10 +20,10 @@ class Post extends Model
     }
     public function comment()
     {
-        return $this->hasMany(Comment::class, "post_id", "id" );
+        return $this->hasMany(Comment::class);
     }
     public function likepost()
     {
-        return $this->hasMany(Likepost::class, "post_id", "id");
+        return $this->hasMany(Likepost::class);
     }
 }

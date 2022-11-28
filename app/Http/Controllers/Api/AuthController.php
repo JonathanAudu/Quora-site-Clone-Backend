@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Mail\SendOtpMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Password;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 
@@ -114,6 +114,7 @@ class AuthController extends Controller
             'name' => $user->name,
             'email' => $user->email,
             'token' => $token,
+            'otp' => $user->otp,
         ];
 
 
@@ -244,11 +245,13 @@ class AuthController extends Controller
 
         $user = User::where('id', $req->id)->first();
         $user->password = bcrypt($validator['password']);
+        $token = $user->createToken('myapptoken')->plainTextToken;
 
         if($user->save()){
             $response = [
                 'message' => 'Registration successful',
-                'user' => $user
+                'user' => $user,
+                'token' => $token
             ];
         }
 
@@ -333,6 +336,63 @@ class AuthController extends Controller
 
 
     }
+
+// Google login
+    public function googleLogin(){
+        // return Socialite::driver('google')->redirect();
+        $googleUser = Socialite::driver('google')->user();
+
+        $user = User::updateOrCreate([
+            'google_id' => $googleUser->id,
+        ], [
+            'name' => $googleUser->name,
+            'email' => $googleUser->email,
+            'google_token' => $googleUser->token,
+            'google_refresh_token' => $googleUser->refreshToken,
+        ]);
+
+        $response = [
+            'user' => $user,
+        ];
+        return response($response, 201);
+        // Auth::login($user);
+    }
+
+// Google callback
+    public function googleLoginCallback(){
+         return Socialite::driver('google')->user();
+    }
+
+
+// Facebook login
+    public function facebookLogin(){
+        // return Socialite::driver('facebook')->redirect();
+        $facebookUser = Socialite::driver('facebook')->user();
+
+        $user = User::updateOrCreate([
+            'facebook_id' => $facebookUser->id,
+        ], [
+            'name' => $facebookUser->name,
+            'email' => $facebookUser->email,
+            'facebook_token' => $facebookUser->token,
+            'facebook_refresh_token' => $facebookUser->refreshToken,
+        ]);
+
+        $response = [
+            'user' => $user,
+        ];
+        return response($response, 201);
+    }
+
+// Facebook callback
+    public function facebookLoginCallback(){
+        return Socialite::driver('facebook')->user();
+    }
+
+
+
+
+
 
 
  /**
